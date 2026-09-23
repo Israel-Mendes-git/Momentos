@@ -20,5 +20,8 @@ window.GALERIA = [
   // A partir daqui, fotos que aparecem apenas na página Galeria.
   { arquivo: "assets/img/galeria-07.jpg", alt: "Entrada da noiva no corredor decorado com pétalas.", tipo: "casamento", destaque: false, proporcao: "4:5" },
   { arquivo: "assets/img/galeria-08.jpg", alt: "Área de recepção montada com lounge e iluminação suave.", tipo: "casamento", destaque: false, proporcao: "4:5" },
-  { arquivo: "assets/img/galeria-09.jpg", alt: "Painel temático da festa infantil com o nome da criança.", tipo: "infantil",  destaque: false, proporcao: "4:5" }
+  { arquivo: "assets/img/galeria-09.jpg", alt: "Painel temático da festa infantil com o nome da criança.", tipo: "infantil",  destaque: false, proporcao: "4:5" },
+  { arquivo: "assets/img/galeria-10.jpg", alt: "Noivos saindo da cerimônia sob uma chuva de pétalas.", tipo: "casamento", destaque: false, proporcao: "3:2" },
+  { arquivo: "assets/img/galeria-11.jpg", alt: "Crianças brincando em roda com a recreação no jardim da festa.", tipo: "infantil",  destaque: false, proporcao: "3:2" },
+  { arquivo: "assets/img/galeria-12.jpg", alt: "Lembrancinhas organizadas na mesa da saída da festa infantil.", tipo: "infantil",  destaque: false, proporcao: "1:1" }
 ];

@@ -398,5 +398,217 @@ window.PROMPTS = [
     prompt: "Wide cinematic view of an outdoor wedding venue just before the ceremony, empty chairs aligned facing a floral arch, warm late afternoon light across the lawn, classic elegant decoration, warm nude palette of linen, sand and taupe, garden venue at golden hour, warm low sunlight with long shadows, horizontal cinematic wide shot with plenty of empty space in the center for text overlay, 24mm lens at f/4, editorial wedding photography, photorealistic",
     negative: "text, watermark, logo, people, busy center of frame, distorted structures, blurry, oversaturated, neon colors, harsh flash, cartoon, low resolution",
     tags: ["fundo", "espaço para texto", "golden hour", "cerimônia"]
+  },
+
+  /* ============ ANIVERSÁRIO INFANTIL ============ */
+  {
+    id: "infantil-hero",
+    titulo: "Hero da página de aniversário infantil",
+    destino: "aniversario-infantil.html — hero (foto em arco)",
+    arquivo: "assets/img/infantil-hero.jpg",
+    proporcao: "4:5",
+    cerimonia: "infantil", elemento: "bolo", estilo: "minimalista",
+    paleta: "nude-rose", ambiente: "interno", horario: "tarde",
+    prompt: "A small Brazilian child around three years old smiling in front of a styled birthday cake table, seen slightly from the side, a two-tier cake with smooth buttercream, an organic balloon garland in muted cream, sand and dusty rose behind, a few dried flowers, no cartoon characters, warm nude palette of cream, sand and dusty rose, indoor venue in the afternoon, soft diffused window light, vertical medium shot with the child in the lower third and space above for the arched crop, 85mm lens at f/2, shallow depth of field, editorial event photography, natural skin tones, photorealistic",
+    negative: "text, watermark, logo, licensed characters, cartoon mascots, garish primary colors, distorted face, extra fingers, deformed hands, blurry subject, oversaturated, harsh flash, plastic clutter, low resolution",
+    tags: ["criança", "bolo", "balões", "capa"],
+    observacao: "A foto recebe recorte em arco no topo: deixe espaço acima da criança."
+  },
+  {
+    id: "infantil-incluso",
+    titulo: "Bastidores da festa infantil",
+    destino: "aniversario-infantil.html — seção O que está incluso",
+    arquivo: "assets/img/infantil-incluso.jpg",
+    proporcao: "4:5",
+    cerimonia: "infantil", elemento: "retrato", estilo: "atemporal",
+    paleta: "nude", ambiente: "interno", horario: "tarde",
+    prompt: "Event planner seen from behind and slightly to the side, adjusting a small sign on a children's party dessert table before guests arrive, holding a clipboard in the other hand, jars of sweets and a simple cake on the table, balloons in muted tones in the background, quiet backstage atmosphere, warm nude palette of cream, sand and dusty rose, indoor venue in the afternoon, soft diffused side light, vertical medium shot, 50mm lens at f/2, editorial documentary photography, photorealistic",
+    negative: "readable text, watermark, logo, licensed characters, cartoon mascots, extra fingers, deformed hands, distorted face, blurry, oversaturated, harsh flash, clutter, low resolution",
+    tags: ["bastidores", "mesa de doces", "cerimonialista"]
+  },
+  {
+    id: "infantil-tema-jardim",
+    titulo: "Tema: jardim encantado",
+    destino: "aniversario-infantil.html — temas",
+    arquivo: "assets/img/infantil-tema-jardim.jpg",
+    proporcao: "3:4",
+    cerimonia: "infantil", elemento: "ambiente", estilo: "atemporal",
+    paleta: "nude-rose", ambiente: "externo", horario: "tarde",
+    prompt: "Enchanted garden themed children's birthday party table outdoors, pastel flowers in low arrangements, paper butterflies on thin wires, a cake decorated with pressed flowers, a wooden table with a linen runner, greenery and a garden in the background, warm nude palette of cream, blush, sage and dusty rose, garden venue in the afternoon, soft warm dappled sunlight, vertical medium shot, 35mm lens at f/2.8, editorial event photography, fine detail, photorealistic",
+    negative: "text, watermark, logo, people, licensed characters, cartoon mascots, garish colors, plastic flowers, distorted objects, blurry, oversaturated, harsh flash, low resolution",
+    tags: ["jardim", "borboletas", "flores", "tema"]
+  },
+  {
+    id: "infantil-tema-safari",
+    titulo: "Tema: safári",
+    destino: "aniversario-infantil.html — temas",
+    arquivo: "assets/img/infantil-tema-safari.jpg",
+    proporcao: "3:4",
+    cerimonia: "infantil", elemento: "ambiente", estilo: "atemporal",
+    paleta: "nude", ambiente: "interno", horario: "tarde",
+    prompt: "Safari themed children's birthday party table, tropical leaves and pampas grass, woven straw baskets, soft plush toy animals like a lion and a giraffe in natural beige tones, a cake with a simple leaf decoration, balloons in sand, olive and cream, warm nude palette of sand, olive green and caramel, indoor venue in the afternoon, soft diffused daylight, vertical medium shot, 35mm lens at f/2.8, editorial event photography, fine detail, photorealistic",
+    negative: "text, watermark, logo, people, licensed characters, cartoon mascots, garish colors, plastic clutter, distorted animals, blurry, oversaturated, harsh flash, low resolution",
+    tags: ["safári", "folhagem", "bichos", "tema"]
+  },
+  {
+    id: "infantil-tema-circo",
+    titulo: "Tema: circo vintage",
+    destino: "aniversario-infantil.html — temas",
+    arquivo: "assets/img/infantil-tema-circo.jpg",
+    proporcao: "3:4",
+    cerimonia: "infantil", elemento: "ambiente", estilo: "atemporal",
+    paleta: "nude-rose", ambiente: "interno", horario: "tarde",
+    prompt: "Vintage circus themed children's birthday party table, a striped fabric tent backdrop in cream and muted terracotta, popcorn in striped paper boxes, a small carousel cake topper, pennant garlands without letters, wooden toys, warm nude palette of cream, sand, muted terracotta and dusty rose, indoor venue in the afternoon, soft warm diffused light, vertical medium shot, 35mm lens at f/2.8, editorial event photography, fine detail, photorealistic",
+    negative: "readable text, letters, watermark, logo, people, clowns, licensed characters, garish primary colors, plastic clutter, distorted objects, blurry, oversaturated, harsh flash, low resolution",
+    tags: ["circo", "listras", "pipoca", "tema"]
+  },
+  {
+    id: "infantil-tema-mar",
+    titulo: "Tema: fundo do mar",
+    destino: "aniversario-infantil.html — temas",
+    arquivo: "assets/img/infantil-tema-mar.jpg",
+    proporcao: "3:4",
+    cerimonia: "infantil", elemento: "ambiente", estilo: "atemporal",
+    paleta: "colorido", ambiente: "interno", horario: "tarde",
+    prompt: "Under the sea themed children's birthday party table, an organic balloon garland in dusty blue, seafoam and sand, seashells and starfish scattered on a linen tablecloth, a cake with a soft wave pattern in pale blue buttercream, fishing net draped at the side, calm muted coastal palette of sand, dusty blue and cream, indoor venue in the afternoon, soft diffused daylight, vertical medium shot, 35mm lens at f/2.8, editorial event photography, fine detail, photorealistic",
+    negative: "text, watermark, logo, people, licensed characters, cartoon mascots, neon blue, garish colors, plastic clutter, distorted objects, blurry, oversaturated, harsh flash, low resolution",
+    tags: ["fundo do mar", "conchas", "azul", "tema"]
+  },
+  {
+    id: "infantil-tema-confeitaria",
+    titulo: "Tema: confeitaria",
+    destino: "aniversario-infantil.html — temas",
+    arquivo: "assets/img/infantil-tema-confeitaria.jpg",
+    proporcao: "3:4",
+    cerimonia: "infantil", elemento: "bolo", estilo: "atemporal",
+    paleta: "nude-rose", ambiente: "interno", horario: "tarde",
+    prompt: "Sweet shop themed children's birthday party table, a tiered cake with pastel drip icing, glass jars of colorful candies in soft tones, macarons on a cake stand, tiny aprons and chef hats folded for the children, a scalloped awning backdrop in blush and cream stripes, warm pastel palette of cream, blush, pistachio and dusty rose, indoor venue in the afternoon, soft diffused daylight, vertical medium shot, 35mm lens at f/2.8, editorial food and event photography, fine detail, photorealistic",
+    negative: "readable text, watermark, logo, people, licensed characters, cartoon mascots, garish neon colors, plastic clutter, distorted food, blurry, oversaturated, harsh flash, low resolution",
+    tags: ["confeitaria", "doces", "pastel", "tema"]
+  },
+  {
+    id: "infantil-tema-espaco",
+    titulo: "Tema: espaço sideral",
+    destino: "aniversario-infantil.html — temas",
+    arquivo: "assets/img/infantil-tema-espaco.jpg",
+    proporcao: "3:4",
+    cerimonia: "infantil", elemento: "ambiente", estilo: "atemporal",
+    paleta: "colorido", ambiente: "interno", horario: "noite",
+    prompt: "Outer space themed children's birthday party table, a deep navy fabric backdrop with tiny warm fairy lights like stars, planets made of matte balloons in sand, terracotta and cream, a small wooden rocket, a cake with a gold crescent moon, warm muted palette of navy, sand, terracotta and soft gold, indoor venue in the evening, warm soft ambient lighting with gentle glow, vertical medium shot, 35mm lens at f/2.8, editorial event photography, fine detail, photorealistic",
+    negative: "text, watermark, logo, people, licensed characters, cartoon mascots, neon colors, plastic clutter, distorted objects, blurry, oversaturated, harsh flash, low resolution",
+    tags: ["espaço", "planetas", "estrelas", "tema"]
+  },
+  {
+    id: "infantil-chamada",
+    titulo: "Fundo da chamada final infantil",
+    destino: "aniversario-infantil.html — bloco escuro de chamada",
+    arquivo: "assets/img/infantil-chamada.jpg",
+    proporcao: "16:9",
+    cerimonia: "infantil", elemento: "ambiente", estilo: "minimalista",
+    paleta: "nude-rose", ambiente: "interno", horario: "tarde",
+    prompt: "Wide cinematic view of a children's party venue ready before guests arrive, a styled dessert table at one side, balloon garlands in muted cream and dusty rose, small tables and chairs for children, soft late afternoon light entering through tall windows, warm nude palette of cream, sand and dusty rose, indoor venue in the late afternoon, warm diffused light, horizontal cinematic wide shot with plenty of empty space in the center for text overlay, 24mm lens at f/4, editorial event photography, photorealistic",
+    negative: "text, watermark, logo, people, busy center of frame, licensed characters, garish colors, distorted structures, blurry, oversaturated, harsh flash, low resolution",
+    tags: ["fundo", "espaço para texto", "infantil"]
+  },
+
+  /* ============ SOBRE ============ */
+  {
+    id: "sobre-retrato",
+    titulo: "Retrato principal da Adeline",
+    destino: "sobre.html — hero (foto em arco)",
+    arquivo: "assets/img/sobre-retrato.jpg",
+    proporcao: "4:5",
+    cerimonia: "geral", elemento: "retrato", estilo: "atemporal",
+    paleta: "nude", ambiente: "interno", horario: "tarde",
+    prompt: "Elegant portrait of a Brazilian woman in her forties, a wedding planner, standing relaxed with a warm confident smile, wearing a tailored beige blazer over a cream blouse, holding a leather notebook, an event venue with soft draped fabric and flowers blurred behind her, warm nude palette of linen, sand and taupe, indoor in the afternoon, soft diffused window light, vertical waist-up portrait with space above the head for an arched crop, 85mm lens at f/2, shallow depth of field, editorial portrait photography, natural skin tones, photorealistic",
+    negative: "text, watermark, logo, extra fingers, deformed hands, distorted face, plastic skin, stock-photo pose, blurry, oversaturated, harsh flash, cluttered background, cartoon, low resolution",
+    tags: ["retrato", "cerimonialista", "sobre"],
+    observacao: "Esta foto representa a Adeline. O ideal é substituí-la por uma foto real dela assim que possível."
+  },
+  {
+    id: "sobre-bastidores-01",
+    titulo: "Bastidores: conferindo o roteiro",
+    destino: "sobre.html — mosaico Nos bastidores (foto grande)",
+    arquivo: "assets/img/sobre-bastidores-01.jpg",
+    proporcao: "4:5",
+    cerimonia: "geral", elemento: "retrato", estilo: "atemporal",
+    paleta: "nude", ambiente: "interno", horario: "tarde",
+    prompt: "Wedding planner standing in an empty reception hall before doors open, reading a printed run-of-show on a clipboard, a discreet earpiece in one ear, tables set with linen and candles blurred around her, calm focused expression, warm nude palette of linen, sand and taupe, indoor venue in the late afternoon, soft warm window light, vertical medium shot, 50mm lens at f/2, editorial documentary photography, natural skin tones, photorealistic",
+    negative: "readable text, watermark, logo, extra fingers, deformed hands, distorted face, blurry subject, oversaturated, harsh flash, clutter, cartoon, low resolution",
+    tags: ["bastidores", "roteiro", "prancheta"]
+  },
+  {
+    id: "sobre-bastidores-02",
+    titulo: "Bastidores: kit de emergência",
+    destino: "sobre.html — mosaico Nos bastidores",
+    arquivo: "assets/img/sobre-bastidores-02.jpg",
+    proporcao: "1:1",
+    cerimonia: "geral", elemento: "ambiente", estilo: "atemporal",
+    paleta: "nude", ambiente: "interno", horario: "tarde",
+    prompt: "Top-down view of an open wedding planner emergency kit on a linen surface, a canvas pouch with sewing needles and thread spools in ivory and nude, safety pins, double-sided tape, bobby pins, a small hairspray, tissues, bandages and a folded printed schedule, neatly organized, warm nude palette of linen, sand and taupe, indoor in the afternoon, soft diffused daylight, square flat lay composition, 50mm lens at f/4, editorial product photography, fine detail, photorealistic",
+    negative: "readable text, brand labels, watermark, logo, hands, messy clutter, blurry, oversaturated, harsh flash, cartoon, low resolution",
+    tags: ["kit emergência", "flat lay", "detalhe"]
+  },
+  {
+    id: "sobre-bastidores-03",
+    titulo: "Bastidores: alinhando a equipe",
+    destino: "sobre.html — mosaico Nos bastidores",
+    arquivo: "assets/img/sobre-bastidores-03.jpg",
+    proporcao: "1:1",
+    cerimonia: "geral", elemento: "retrato", estilo: "atemporal",
+    paleta: "nude", ambiente: "interno", horario: "tarde",
+    prompt: "Wedding planner briefing a small event staff team in a circle before the party begins, seen from a slight distance, staff in neat dark uniforms listening, the planner gesturing with a clipboard, reception venue with draped fabric and warm lights in the background, warm nude palette of linen, sand and taupe, indoor venue in the late afternoon, soft warm ambient light, square medium wide shot, 35mm lens at f/2.8, editorial documentary photography, natural skin tones, photorealistic",
+    negative: "readable text, watermark, logo, extra fingers, deformed hands, distorted faces, blurry, oversaturated, harsh flash, clutter, cartoon, low resolution",
+    tags: ["equipe", "bastidores", "reunião"]
+  },
+  {
+    id: "sobre-chamada",
+    titulo: "Fundo da chamada final da página Sobre",
+    destino: "sobre.html — bloco escuro de chamada",
+    arquivo: "assets/img/sobre-chamada.jpg",
+    proporcao: "16:9",
+    cerimonia: "geral", elemento: "mesa", estilo: "minimalista",
+    paleta: "nude", ambiente: "interno", horario: "tarde",
+    prompt: "Wide cinematic view of a cozy café table set for a first meeting, two cups of coffee, a leather planner open with a pen, a small vase of dried flowers, a window with soft afternoon light at one side, warm nude palette of linen, sand, taupe and coffee brown, indoor in the afternoon, warm diffused light, horizontal cinematic wide shot with plenty of empty space in the center for text overlay, 35mm lens at f/2.8, editorial lifestyle photography, photorealistic",
+    negative: "readable text, watermark, logo, people, busy center of frame, blurry, oversaturated, harsh flash, clutter, cartoon, low resolution",
+    tags: ["fundo", "café", "reunião", "espaço para texto"]
+  },
+
+  /* ============ GALERIA (extras) ============ */
+  {
+    id: "galeria-10",
+    titulo: "Galeria 10 — saída sob pétalas",
+    destino: "galeria.html",
+    arquivo: "assets/img/galeria-10.jpg",
+    proporcao: "3:2",
+    cerimonia: "casamento", elemento: "cerimonia", estilo: "classico",
+    paleta: "nude-rose", ambiente: "externo", horario: "fim-de-tarde",
+    prompt: "Brazilian bride and groom walking down the aisle after the ceremony, laughing, guests on both sides throwing white and blush rose petals in the air, petals frozen mid-air, classic elegant decoration, warm nude palette of linen, sand, taupe and dusty rose, garden venue at golden hour, warm backlight, horizontal medium wide shot, 50mm lens at f/2.2, editorial wedding photography, natural skin tones, photorealistic",
+    negative: "text, watermark, logo, extra fingers, deformed hands, distorted faces, blurry subject, oversaturated, neon colors, harsh flash, cartoon, low resolution",
+    tags: ["saída", "pétalas", "noivos"]
+  },
+  {
+    id: "galeria-11",
+    titulo: "Galeria 11 — recreação no jardim",
+    destino: "galeria.html",
+    arquivo: "assets/img/galeria-11.jpg",
+    proporcao: "3:2",
+    cerimonia: "infantil", elemento: "ambiente", estilo: "atemporal",
+    paleta: "nude-rose", ambiente: "externo", horario: "tarde",
+    prompt: "Children playing in a circle on a lawn with a party entertainer during a birthday party, holding a large parachute play fabric in muted cream and dusty rose, candid joyful moment, balloons in muted tones in the background, warm nude palette of cream, sand, sage and dusty rose, garden venue in the afternoon, soft warm sunlight, horizontal medium wide shot, 35mm lens at f/2.8, editorial documentary event photography, natural skin tones, photorealistic",
+    negative: "text, watermark, logo, licensed characters, cartoon mascots, distorted faces, extra limbs, blurry, oversaturated, garish colors, harsh flash, low resolution",
+    tags: ["recreação", "crianças", "jardim"]
+  },
+  {
+    id: "galeria-12",
+    titulo: "Galeria 12 — mesa de lembrancinhas",
+    destino: "galeria.html",
+    arquivo: "assets/img/galeria-12.jpg",
+    proporcao: "1:1",
+    cerimonia: "infantil", elemento: "mesa", estilo: "minimalista",
+    paleta: "nude-rose", ambiente: "interno", horario: "tarde",
+    prompt: "Party favors table at the exit of a children's birthday party, small kraft paper bags tied with dusty rose ribbon, little jars of sweets and tiny potted succulents lined up neatly, a linen tablecloth, a small basket, warm nude palette of kraft, cream, sand and dusty rose, indoor venue in the afternoon, soft diffused daylight, square composition, 50mm lens at f/2.8, editorial product photography, fine detail, photorealistic",
+    negative: "readable text, labels, watermark, logo, people, licensed characters, garish colors, plastic clutter, blurry, oversaturated, harsh flash, low resolution",
+    tags: ["lembrancinhas", "saída", "infantil"]
   }
 ];
