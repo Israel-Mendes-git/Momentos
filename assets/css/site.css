@@ -39,12 +39,7 @@
 /* ---------- 2. Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-  /* o menu lateral fica fora da tela quando fechado; clip evita que ele
-     crie rolagem horizontal, sem quebrar o position:sticky do cabeçalho */
-  overflow-x: clip;
-}
+html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
@@ -59,7 +54,6 @@ body {
   font-weight: 300;
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 img, svg, figure { display: block; max-width: 100%; }
@@ -251,15 +245,26 @@ a { color: var(--rose-forte); }
 .abre-menu svg { width: 1.3rem; height: 1.3rem; }
 
 @media (max-width: 960px) {
-  .abre-menu { display: block; }
+  .abre-menu { display: block; position: relative; z-index: 120; }
+
+  /* backdrop-filter cria containing block para filhos position:fixed,
+     o que prendia o painel do menu dentro da altura do cabeçalho */
+  .topo { backdrop-filter: none; background: var(--linho); }
   .topo__nav {
     position: fixed; inset: 0 0 0 auto; width: min(22rem, 86vw);
     background: var(--linho); border-left: 1px solid var(--linha);
-    padding: 5.5rem 2rem 2rem; transform: translateX(100%);
-    transition: transform .35s ease; box-shadow: var(--sombra-md);
+    padding: 5.5rem 2rem 2rem; box-shadow: var(--sombra-md);
     display: flex; flex-direction: column; gap: 2rem;
+    align-items: flex-start; overflow-y: auto; z-index: 110;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity .28s ease, transform .28s ease, visibility 0s .28s;
   }
-  .topo__nav[data-aberto="true"] { transform: translateX(0); }
+  .topo__nav[data-aberto="true"] {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transform: none;
+    transition: opacity .28s ease, transform .28s ease, visibility 0s;
+  }
   .menu { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
   .menu a { font-size: .85rem; }
   .topo .btn { width: 100%; justify-content: center; }
