@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adeline Mendes Cerimonial — 3 direções visuais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Lato:wght@300;400;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#1b1b1b;color:#eee;font-family:Jost,system-ui,sans-serif}
+.page-head{max-width:900px;margin:0 auto;padding:56px 24px 32px;text-align:center}
+.page-head h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:40px;letter-spacing:.02em;margin:0 0 12px}
+.page-head p{color:#9a9a9a;font-size:15px;line-height:1.7;margin:0}
+.dir{padding:0 0 72px}
+.dir-label{max-width:1180px;margin:0 auto;padding:48px 24px 20px;display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;border-top:1px solid #2e2e2e}
+.dir-label .tagnum{font-family:Jost;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#7c7c7c}
+.dir-label h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:30px;margin:0;color:#fff}
+.dir-label .desc{color:#8e8e8e;font-size:14px;line-height:1.6;flex:1 1 320px}
+.frame{max-width:1180px;margin:0 auto;padding:0 24px}
+.sample{border-radius:4px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+
+/* ---------- ESTRUTURA COMUM DA AMOSTRA ---------- */
+.s{background:var(--bg);color:var(--ink);font-family:var(--sans)}
+.s .nav{display:flex;align-items:center;justify-content:space-between;padding:22px 40px;position:relative;z-index:3}
+.s .logo{font-family:var(--display);font-size:22px;letter-spacing:.06em;color:var(--onhero);font-weight:var(--dispw)}
+.s .logo small{display:block;font-family:var(--sans);font-size:8.5px;letter-spacing:.34em;text-transform:uppercase;opacity:.85;margin-top:3px;font-weight:400}
+.s .nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--onhero)}
+.s .hero{position:relative;min-height:400px;display:flex;flex-direction:column;isolation:isolate}
+.s .hero::before{content:"";position:absolute;inset:0;background:var(--heroimg);z-index:0}
+.s .hero::after{content:"";position:absolute;inset:0;background:var(--heroveil);z-index:1}
+.s .hero > *{position:relative;z-index:2}
+.s .hero-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 40px 70px;color:var(--onhero)}
+.s .eyebrow{font-size:10px;letter-spacing:.34em;text-transform:uppercase;margin:0 0 18px;opacity:.9}
+.s .hero h3{font-family:var(--display);font-weight:var(--dispw);font-size:clamp(34px,4.4vw,56px);line-height:1.04;letter-spacing:var(--displs);margin:0;text-transform:var(--disptt)}
+.s .hero h3 em{font-style:italic;text-transform:none;display:block;font-weight:400}
+.s .hero p{max-width:440px;font-size:13.5px;line-height:1.85;margin:22px 0 28px;opacity:.94}
+.btn{display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:15px 34px;border:1px solid transparent;cursor:pointer;text-decoration:none;border-radius:var(--radius)}
+.btn-1{background:var(--accent);color:var(--onaccent)}
+.btn-2{background:transparent;color:var(--ink);border-color:var(--line)}
+.curve{height:58px;margin-top:-58px;position:relative;z-index:2;background:var(--bg);border-radius:50% 50% 0 0/58px 58px 0 0}
+.s .body{padding:10px 40px 44px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.sec-eyebrow{font-family:var(--display);font-style:italic;font-size:19px;color:var(--accent-dk);margin:0 0 6px}
+.sec-title{font-family:var(--display);font-weight:var(--dispw);font-size:27px;line-height:1.2;letter-spacing:var(--displs);text-transform:var(--disptt);margin:0 0 14px}
+.sec-title em{font-style:italic;text-transform:none}
+.copy{font-size:13.5px;line-height:1.9;color:var(--muted);margin:0 0 20px;max-width:46ch}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.card .ph{height:104px;background:var(--cardimg)}
+.card .in{padding:15px 16px 18px}
+.card h4{font-family:var(--display);font-weight:var(--dispw);font-size:16px;margin:0 0 6px;letter-spacing:.02em}
+.card p{font-size:11.5px;line-height:1.7;color:var(--muted);margin:0}
+.pill{display:inline-block;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;padding:5px 11px;border-radius:99px;background:var(--pill);color:var(--accent-dk);margin:0 6px 6px 0}
+
+/* ---------- FICHA TECNICA ---------- */
+.spec{max-width:1180px;margin:0 auto;padding:22px 24px 0;display:grid;grid-template-columns:1.25fr 1fr;gap:34px}
+.spec h5{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#7c7c7c;margin:0 0 12px;font-weight:500}
+.swatches{display:flex;flex-wrap:wrap;gap:8px}
+.sw{width:84px}
+.sw i{display:block;height:54px;border-radius:3px;border:1px solid rgba(255,255,255,.1)}
+.sw b{display:block;font-size:10px;margin-top:6px;color:#cfcfcf;font-weight:500}
+.sw span{display:block;font-size:9.5px;color:#7f7f7f;letter-spacing:.05em}
+.typespec p{margin:0 0 10px;color:#ddd}
+.typespec .t1{font-size:15px}
+.typespec .t2{font-size:12.5px;color:#9a9a9a;line-height:1.6}
+footer{max-width:900px;margin:0 auto;padding:40px 24px 80px;text-align:center;color:#6f6f6f;font-size:13px;line-height:1.8;border-top:1px solid #2e2e2e}
+@media(max-width:860px){.grid,.spec{grid-template-columns:1fr}.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <h1>Adeline Mendes Cerimonial</h1>
+  <p>Três direções visuais renderizadas com as cores e as tipografias de verdade. Cada amostra é um pedaço real de home: menu, hero, primeira seção e cards de serviço. Escolha uma — ou misture, por exemplo “paleta da 02 com a tipografia da 01”.</p>
+</div>
+
+<!-- ============ DIRECAO A ============ -->
+<section class="dir">
+  <div class="dir-label">
+    <span class="tagnum">Direção 01</span>
+    <h2>Nude Editorial</h2>
+    <p class="desc">A mais próxima da referência que você mandou: neutros terrosos, serifada fina em caixa alta com itálico de destaque e divisória em curva. Elegante, atemporal, discreta — deixa a foto do evento ser a protagonista.</p>
+  </div>
+  <div class="frame"><div class="sample">
+    <div class="s" style="
+      --bg:#F7F3EE; --surface:#FFFDFB; --ink:#3B332E; --muted:#7A6D63; --line:#E4D9CE;
+      --accent:#A98E7C; --accent-dk:#8A7263; --onaccent:#FFFDFB; --pill:#EFE6DC; --onhero:#FBF7F3;
+      --display:'Cormorant Garamond',serif; --sans:Jost,sans-serif; --dispw:300; --displs:.04em; --disptt:uppercase;
+      --radius:2px;
+      --heroimg:linear-gradient(135deg,#6F6055 0%,#8B7A6C 42%,#A8998A 70%,#6B5D51 100%);
+      --heroveil:linear-gradient(180deg,rgba(45,38,32,.52),rgba(45,38,32,.34) 55%,rgba(45,38,32,.6));
+      --cardimg:linear-gradient(140deg,#E8DDD2,#C9B8A8 60%,#B9A394);">
+      <div class="hero">
+        <div class="nav">
+          <div class="logo">Adeline Mendes<small>Cerimonial</small></div>
+          <ul><li>Início</li><li>Casamento</li><li>Infantil</li><li>Sobre</li><li>Contato</li></ul>
+        </div>
+        <div class="hero-body">
+          <p class="eyebrow">Cerimonial &amp; Assessoria de Eventos</p>
+          <h3>Cada detalhe<em>no lugar certo</em></h3>
+          <p>Da primeira reunião ao último convidado: conduzo o seu dia com protocolo, calma e um olhar atento para tudo aquilo que você nem imaginou perguntar.</p>
+          <a class="btn btn-1" href="#">Falar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="curve"></div>
+      <div class="body">
+        <div class="grid">
+          <div>
+            <p class="sec-eyebrow">Sobre mim</p>
+            <h2 class="sec-title">Quem cuida do <em>seu momento</em></h2>
+            <p class="copy">Há mais de dez anos organizo casamentos e festas que precisam funcionar sem que ninguém perceba o trabalho por trás. Minha função é simples de dizer e difícil de fazer: garantir que você só precise estar presente.</p>
+            <a class="btn btn-2" href="#">Conheça meu trabalho</a>
+          </div>
+          <div>
+            <span class="pill">Casamento</span><span class="pill">Aniversário infantil</span><span class="pill">Assessoria completa</span>
+            <div class="cards">
+              <div class="card"><div class="ph"></div><div class="in"><h4>Casamento</h4><p>Roteiro, ordem de entrada, fornecedores e condução do dia.</p></div></div>
+              <div class="card"><div class="ph"></div><div class="in"><h4>Infantil</h4><p>Tema, cronograma e recreação alinhados à rotina da criança.</p></div></div>
+              <div class="card"><div class="ph"></div><div class="in"><h4>Dia do evento</h4><p>Equipe em campo, timing e imprevistos resolvidos na hora.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+  <div class="spec">
+    <div>
+      <h5>Paleta</h5>
+      <div class="swatches">
+        <div class="sw"><i style="background:#F7F3EE"></i><b>Linho</b><span>#F7F3EE</span></div>
+        <div class="sw"><i style="background:#E8DDD2"></i><b>Areia</b><span>#E8DDD2</span></div>
+        <div class="sw"><i style="background:#A98E7C"></i><b>Taupe</b><span>#A98E7C</span></div>
+        <div class="sw"><i style="background:#8A7263"></i><b>Castanho</b><span>#8A7263</span></div>
+        <div class="sw"><i style="background:#3B332E"></i><b>Grafite</b><span>#3B332E</span></div>
+      </div>
+    </div>
+    <div class="typespec">
+      <h5>Tipografia</h5>
+      <p class="t1" style="font-family:'Cormorant Garamond',serif;font-weight:300;letter-spacing:.06em">CORMORANT GARAMOND <em>light</em> — títulos</p>
+      <p class="t2" style="font-family:Jost,sans-serif">Jost 300/400 — corpo de texto e menus. Texto grafite sobre fundo linho: contraste 10,4:1 (AAA).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIRECAO B ============ -->
+<section class="dir">
+  <div class="dir-label">
+    <span class="tagnum">Direção 02</span>
+    <h2>Rosé Clássico</h2>
+    <p class="desc">Romântica e afetiva: blush, vinho rosado e dourado champagne, com serifada de alto contraste. Fala mais alto com noivas e conversa bem com festa infantil. Menos “template de agência”, mais convite de casamento.</p>
+  </div>
+  <div class="frame"><div class="sample">
+    <div class="s" style="
+      --bg:#FDF8F6; --surface:#FFFFFF; --ink:#2E2124; --muted:#7C646A; --line:#F0DCD7;
+      --accent:#8C4A52; --accent-dk:#8C4A52; --onaccent:#FFF8F5; --pill:#F7E7E3; --onhero:#FFF6F3;
+      --display:'Playfair Display',serif; --sans:Lato,sans-serif; --dispw:400; --displs:0em; --disptt:none;
+      --radius:10px;
+      --heroimg:linear-gradient(140deg,#6E3B44 0%,#A9636B 38%,#D9A9A0 66%,#7B4149 100%);
+      --heroveil:linear-gradient(180deg,rgba(46,33,36,.5),rgba(46,33,36,.28) 50%,rgba(46,33,36,.58));
+      --cardimg:linear-gradient(140deg,#F3E3DE,#E1B9B4 55%,#C99A9B);">
+      <div class="hero">
+        <div class="nav">
+          <div class="logo" style="font-style:italic">Adeline Mendes<small style="font-style:normal">Cerimonial</small></div>
+          <ul><li>Início</li><li>Casamento</li><li>Infantil</li><li>Sobre</li><li>Contato</li></ul>
+        </div>
+        <div class="hero-body">
+          <p class="eyebrow">Cerimonial &amp; Assessoria de Eventos</p>
+          <h3>O seu dia,<em>do jeito que você sonhou</em></h3>
+          <p>Da primeira reunião ao último convidado: conduzo cada etapa com cuidado, protocolo e olho vivo para o que ninguém lembrou de perguntar.</p>
+          <a class="btn btn-1" href="#">Falar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="body" style="padding-top:44px">
+        <div class="grid">
+          <div>
+            <p class="sec-eyebrow">Sobre mim</p>
+            <h2 class="sec-title">Quem cuida do <em>seu momento</em></h2>
+            <p class="copy">Há mais de dez anos organizo casamentos e festas que precisam funcionar sem que ninguém perceba o trabalho por trás. Minha função é simples de dizer e difícil de fazer: garantir que você só precise estar presente.</p>
+            <a class="btn btn-2" href="#">Conheça meu trabalho</a>
+          </div>
+          <div>
+            <span class="pill">Casamento</span><span class="pill">Aniversário infantil</span><span class="pill">Assessoria completa</span>
+            <div class="cards">
+              <div class="card"><div class="ph"></div><div class="in"><h4>Casamento</h4><p>Roteiro, ordem de entrada, fornecedores e condução do dia.</p></div></div>
+              <div class="card"><div class="ph"></div><div class="in"><h4>Infantil</h4><p>Tema, cronograma e recreação alinhados à rotina da criança.</p></div></div>
+              <div class="card"><div class="ph"></div><div class="in"><h4>Dia do evento</h4><p>Equipe em campo, timing e imprevistos resolvidos na hora.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+  <div class="spec">
+    <div>
+      <h5>Paleta</h5>
+      <div class="swatches">
+        <div class="sw"><i style="background:#FDF8F6"></i><b>Pétala</b><span>#FDF8F6</span></div>
+        <div class="sw"><i style="background:#F3E3DE"></i><b>Blush</b><span>#F3E3DE</span></div>
+        <div class="sw"><i style="background:#D9A9A0"></i><b>Rosé</b><span>#D9A9A0</span></div>
+        <div class="sw"><i style="background:#8C4A52"></i><b>Vinho</b><span>#8C4A52</span></div>
+        <div class="sw"><i style="background:#C3A26B"></i><b>Champagne</b><span>#C3A26B</span></div>
+        <div class="sw"><i style="background:#2E2124"></i><b>Ameixa</b><span>#2E2124</span></div>
+      </div>
+    </div>
+    <div class="typespec">
+      <h5>Tipografia</h5>
+      <p class="t1" style="font-family:'Playfair Display',serif;font-weight:500">Playfair Display <em>italic</em> — títulos</p>
+      <p class="t2" style="font-family:Lato,sans-serif">Lato 300/400 — corpo de texto e menus. Vinho sobre pétala: contraste 7,9:1 (AAA).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIRECAO C ============ -->
+<section class="dir">
+  <div class="dir-label">
+    <span class="tagnum">Direção 03</span>
+    <h2>Verde Botânico</h2>
+    <p class="desc">Natural e brasileira: sálvia, verde profundo, creme e terracota, com serifada moderna de traço grosso. Casa com evento ao ar livre, sítio e festa infantil colorida. A mais distante da referência e a mais difícil de confundir com concorrente.</p>
+  </div>
+  <div class="frame"><div class="sample">
+    <div class="s" style="
+      --bg:#F4F1E8; --surface:#FBFAF4; --ink:#262B24; --muted:#5F6A58; --line:#DCD9C6;
+      --accent:#3E4A3A; --accent-dk:#5C6B52; --onaccent:#F4F1E8; --pill:#E4E5D4; --onhero:#F6F4E9;
+      --display:Fraunces,serif; --sans:Outfit,sans-serif; --dispw:400; --displs:-.01em; --disptt:none;
+      --radius:14px;
+      --heroimg:linear-gradient(140deg,#2C3628 0%,#4F5F46 40%,#7C8B6B 68%,#39452F 100%);
+      --heroveil:linear-gradient(180deg,rgba(24,30,22,.5),rgba(24,30,22,.24) 50%,rgba(24,30,22,.6));
+      --cardimg:linear-gradient(140deg,#DCD9C6,#A8B396 55%,#7C8B6B);">
+      <div class="hero">
+        <div class="nav">
+          <div class="logo">Adeline Mendes<small>Cerimonial</small></div>
+          <ul><li>Início</li><li>Casamento</li><li>Infantil</li><li>Sobre</li><li>Contato</li></ul>
+        </div>
+        <div class="hero-body">
+          <p class="eyebrow">Cerimonial &amp; Assessoria de Eventos</p>
+          <h3>Festa boa é<em>festa bem conduzida</em></h3>
+          <p>Da primeira reunião ao último convidado: roteiro fechado, fornecedores alinhados e alguém de olho em tudo — para você aproveitar sem carregar o evento nas costas.</p>
+          <a class="btn btn-1" href="#">Falar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="body" style="padding-top:44px">
+        <div class="grid">
+          <div>
+            <p class="sec-eyebrow">Sobre mim</p>
+            <h2 class="sec-title">Quem cuida do <em>seu momento</em></h2>
+            <p class="copy">Há mais de dez anos organizo casamentos e festas que precisam funcionar sem que ninguém perceba o trabalho por trás. Minha função é simples de dizer e difícil de fazer: garantir que você só precise estar presente.</p>
+            <a class="btn btn-2" href="#">Conheça meu trabalho</a>
+          </div>
+          <div>
+            <span class="pill">Casamento</span><span class="pill">Aniversário infantil</span><span class="pill">Assessoria completa</span>
+            <div class="cards">
+              <div class="card"><div class="ph"></div><div class="in"><h4>Casamento</h4><p>Roteiro, ordem de entrada, fornecedores e condução do dia.</p></div></div>
+              <div class="card"><div class="ph"></div><div class="in"><h4>Infantil</h4><p>Tema, cronograma e recreação alinhados à rotina da criança.</p></div></div>
+              <div class="card"><div class="ph"></div><div class="in"><h4>Dia do evento</h4><p>Equipe em campo, timing e imprevistos resolvidos na hora.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+  <div class="spec">
+    <div>
+      <h5>Paleta</h5>
+      <div class="swatches">
+        <div class="sw"><i style="background:#F4F1E8"></i><b>Creme</b><span>#F4F1E8</span></div>
+        <div class="sw"><i style="background:#DCD9C6"></i><b>Palha</b><span>#DCD9C6</span></div>
+        <div class="sw"><i style="background:#7C8B6B"></i><b>Sálvia</b><span>#7C8B6B</span></div>
+        <div class="sw"><i style="background:#3E4A3A"></i><b>Mata</b><span>#3E4A3A</span></div>
+        <div class="sw"><i style="background:#C97B5A"></i><b>Terracota</b><span>#C97B5A</span></div>
+        <div class="sw"><i style="background:#262B24"></i><b>Carvão</b><span>#262B24</span></div>
+      </div>
+    </div>
+    <div class="typespec">
+      <h5>Tipografia</h5>
+      <p class="t1" style="font-family:Fraunces,serif;font-weight:600">Fraunces semibold — títulos</p>
+      <p class="t2" style="font-family:Outfit,sans-serif">Outfit 300/400 — corpo de texto e menus. Carvão sobre creme: contraste 13,1:1 (AAA).</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Página de teste — não faz parte do site final.<br>
+  As fotos são placeholders em gradiente; no site real cada slot vira uma imagem gerada com o prompt correspondente.<br>
+  As fontes aqui vêm do Google Fonts; no site final elas serão baixadas e servidas localmente, sem depender de CDN.
+</footer>
+
+</body>
+</html>
