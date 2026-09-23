@@ -36,8 +36,9 @@
   }
 
   /* ---------- Rolagem: cabeçalho, barra de leitura, parallax, WhatsApp ---------- */
-  function iniciarRolagem() {
+  function iniciarRolagem(extras) {
     var topo = document.querySelector('.topo');
+    var linhasTempo = Array.prototype.slice.call(document.querySelectorAll('.linha-tempo'));
     var zap = document.querySelector('.zap-flutuante');
     var paralaxes = menosMovimento ? [] : Array.prototype.slice.call(document.querySelectorAll('[data-parallax], .chamada'));
 
@@ -73,6 +74,18 @@
           el.style.transform = 'translate3d(0,' + (centro * -fator).toFixed(1) + 'px,0)';
         }
       });
+
+      // linha do tempo: o fio enche conforme a seção sobe na tela
+      linhasTempo.forEach(function (lt) {
+        var caixa = lt.getBoundingClientRect();
+        var p = (alturaVisivel * .8 - caixa.top) / Math.max(caixa.height, alturaVisivel * .45);
+        p = Math.min(Math.max(p, 0), 1);
+        lt.style.setProperty('--p', p.toFixed(3));
+        var etapas = lt.querySelectorAll('.linha-tempo__etapa');
+        etapas.forEach(function (e, i) { e.classList.toggle('ativo', p >= i / Math.max(etapas.length - 1, 1) - .001); });
+      });
+
+      (extras || []).forEach(function (fn) { if (fn) fn(); });
     }
     function pedir() { if (!agendado) { agendado = true; requestAnimationFrame(atualizar); } }
 
@@ -250,6 +263,8 @@
     var alvo = document.getElementById('depoimentos-lista');
     if (!alvo || !window.DEPOIMENTOS) return;
 
+    if (alvo.hasAttribute('data-carrossel')) { montarCarrossel(alvo, window.DEPOIMENTOS); return; }
+
     var filtro = alvo.dataset.tipo;
     window.DEPOIMENTOS
       .filter(function (dep) { return !filtro || !dep.tipo || dep.tipo === filtro; })
@@ -281,6 +296,187 @@
         bloco.appendChild(autor);
         alvo.appendChild(bloco);
       });
+  }
+
+  /* ---------- Carrossel de depoimentos ----------
+     Um depoimento por vez; troca sozinho a cada 7s, pausa com o mouse
+     em cima ou com o foco dentro, e não gira com movimento reduzido. */
+  function montarCarrossel(alvo, lista) {
+    var trilho = alvo.querySelector('.carrossel__trilho');
+    var pontos = alvo.querySelector('.carrossel__pontos');
+    var INTERVALO = 7000;
+    var atual = 0, timer = null;
+    alvo.style.setProperty('--intervalo', INTERVALO + 'ms');
+
+    var slides = lista.map(function (dep, i) {
+      var slide = document.createElement('figure');
+      slide.className = 'carrossel__slide';
+      slide.setAttribute('role', 'group');
+      slide.setAttribute('aria-roledescription', 'depoimento');
+      slide.setAttribute('aria-label', (i + 1) + ' de ' + lista.length);
+      slide.innerHTML = '<p class="carrossel__aspas" aria-hidden="true">“</p><blockquote></blockquote>' +
+                        '<figcaption class="carrossel__autor"><b></b><span></span></figcaption>';
+      slide.querySelector('blockquote').textContent = dep.texto;
+      slide.querySelector('b').textContent = dep.nome;
+      slide.querySelector('span').textContent = dep.evento || '';
+      trilho.appendChild(slide);
+
+      var ponto = document.createElement('button');
+      ponto.type = 'button';
+      ponto.className = 'carrossel__ponto';
+      ponto.setAttribute('aria-label', 'Depoimento ' + (i + 1));
+      ponto.addEventListener('click', function () { ir(i); reiniciar(); });
+      pontos.appendChild(ponto);
+      return slide;
+    });
+
+    function ir(i) {
+      atual = (i + slides.length) % slides.length;
+      slides.forEach(function (s, k) {
+        s.classList.toggle('ativo', k === atual);
+        s.setAttribute('aria-hidden', k === atual ? 'false' : 'true');
+      });
+      pontos.querySelectorAll('.carrossel__ponto').forEach(function (p, k) {
+        p.setAttribute('aria-current', k === atual ? 'true' : 'false');
+      });
+      if (timer) reiniciarBarra();
+    }
+
+    // a barrinha do ponto ativo enche no tempo do intervalo; recomeça a cada troca
+    function reiniciarBarra() {
+      alvo.classList.remove('tocando');
+      void alvo.offsetWidth;
+      alvo.classList.add('tocando');
+    }
+
+    function tocar() {
+      if (menosMovimento || slides.length < 2) return;
+      parar();
+      timer = setInterval(function () { ir(atual + 1); }, INTERVALO);
+      trilho.setAttribute('aria-live', 'off');
+      reiniciarBarra();
+    }
+    // girando sozinho, o leitor de tela não anuncia cada troca; parado, anuncia
+    function parar() { clearInterval(timer); timer = null; trilho.setAttribute('aria-live', 'polite'); }
+    function reiniciar() { if (!alvo.classList.contains('pausado')) tocar(); }
+
+    alvo.querySelectorAll('.carrossel__seta').forEach(function (b) {
+      b.addEventListener('click', function () { ir(atual + (+b.dataset.dir)); reiniciar(); });
+    });
+    alvo.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { ir(atual - 1); reiniciar(); }
+      if (e.key === 'ArrowRight') { ir(atual + 1); reiniciar(); }
+    });
+    function pausar() { alvo.classList.add('pausado'); parar(); }
+    function retomar() { alvo.classList.remove('pausado'); tocar(); }
+    alvo.addEventListener('mouseenter', pausar);
+    alvo.addEventListener('mouseleave', function () { if (!alvo.contains(document.activeElement)) retomar(); });
+    alvo.addEventListener('focusin', pausar);
+    alvo.addEventListener('focusout', function (e) { if (!alvo.contains(e.relatedTarget)) retomar(); });
+
+    // deslizar no celular
+    var inicioX = null;
+    alvo.addEventListener('touchstart', function (e) { inicioX = e.touches[0].clientX; }, { passive: true });
+    alvo.addEventListener('touchend', function (e) {
+      if (inicioX === null) return;
+      var dx = e.changedTouches[0].clientX - inicioX;
+      if (Math.abs(dx) > 50) { ir(atual + (dx < 0 ? 1 : -1)); reiniciar(); }
+      inicioX = null;
+    });
+
+    ir(0);
+    tocar();
+  }
+
+  /* ---------- Ramos botânicos: desenham quando aparecem ---------- */
+  function iniciarRamos() {
+    var ramos = document.querySelectorAll('.ramo');
+    if (!ramos.length) return;
+    if (menosMovimento || !('IntersectionObserver' in window)) {
+      ramos.forEach(function (r) { r.classList.add('desenhado'); });
+      return;
+    }
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (!entrada.isIntersecting) return;
+        entrada.target.classList.add('desenhado');
+        observador.unobserve(entrada.target);
+      });
+    }, { threshold: .3 });
+    ramos.forEach(function (r) { observador.observe(r); });
+  }
+
+  /* ---------- Botões magnéticos (só com mouse) ---------- */
+  function iniciarMagneticos() {
+    if (menosMovimento || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    document.querySelectorAll('.btn, .zap-flutuante, .redes a, .carrossel__seta').forEach(function (el) {
+      var FORCA = el.classList.contains('btn') ? .22 : .35, MAX = 10;
+      el.addEventListener('mousemove', function (e) {
+        var r = el.getBoundingClientRect();
+        var dx = (e.clientX - (r.left + r.width / 2)) * FORCA;
+        var dy = (e.clientY - (r.top + r.height / 2)) * FORCA;
+        dx = Math.max(-MAX, Math.min(MAX, dx));
+        dy = Math.max(-MAX, Math.min(MAX, dy));
+        el.style.translate = dx.toFixed(1) + 'px ' + dy.toFixed(1) + 'px';
+      });
+      el.addEventListener('mouseleave', function () { el.style.translate = ''; });
+    });
+  }
+
+  /* ---------- Galeria horizontal fixada (página de teste) ---------- */
+  function iniciarGaleriaHorizontal() {
+    var secao = document.querySelector('[data-galeria-horizontal]');
+    if (!secao || !window.GALERIA) return null;
+    var trilho = secao.querySelector('.galeria-horizontal__trilho');
+    var fim = secao.querySelector('.galeria-horizontal__fim');
+
+    window.GALERIA.forEach(function (item) {
+      var link = document.createElement('a');
+      link.className = 'galeria-item';
+      link.href = 'galeria.html';
+      link.dataset.legenda = item.alt;
+      link.appendChild(criarFoto(item));
+      trilho.insertBefore(link, fim);
+    });
+
+    var desktop = window.matchMedia('(min-width: 861px)');
+    var VELOCIDADE = 1.5;   // o trilho anda 1,5px para cada 1px rolado
+    var distancia = 0;
+
+    function medir() {
+      var fixar = desktop.matches && !menosMovimento;
+      secao.classList.toggle('fixada', fixar);
+      if (!fixar) { secao.style.height = ''; trilho.style.transform = ''; return; }
+      distancia = Math.max(trilho.scrollWidth - window.innerWidth, 0);
+      secao.style.height = (distancia / VELOCIDADE + window.innerHeight) + 'px';
+    }
+
+    function atualizar() {
+      if (!secao.classList.contains('fixada')) return;
+      var topo = secao.getBoundingClientRect().top;
+      var p = Math.min(Math.max(-topo / (secao.offsetHeight - window.innerHeight || 1), 0), 1);
+      trilho.style.transform = 'translate3d(' + (-p * distancia).toFixed(1) + 'px,0,0)';
+      secao.style.setProperty('--p', p.toFixed(4));
+    }
+
+    medir();
+    window.addEventListener('resize', function () { medir(); atualizar(); });
+    window.addEventListener('load', function () { medir(); atualizar(); });
+    return atualizar;
+  }
+
+  /* ---------- Abertura com monograma (página de teste) ---------- */
+  function iniciarAbertura() {
+    var abertura = document.querySelector('.abertura');
+    if (!abertura) return;
+    var raiz = document.documentElement;
+    setTimeout(function () {
+      abertura.classList.add('sai');
+      raiz.classList.remove('abrindo');
+      abertura.addEventListener('animationend', function (e) {
+        if (e.animationName === 'abertura-sai') abertura.remove();
+      });
+    }, menosMovimento ? 0 : 2300);
   }
 
   /* ---------- Foto de fundo dos blocos de chamada ---------- */
@@ -316,7 +512,7 @@
     '.cabeca-secao', '.grid-2 > *', '.grid-3 > *', '.grid-4 > *', '.estilos > *',
     '.roteiro__item', '.numeros > *', '.acordeao', '.valores > *', '.mosaico > *',
     '.contato-grid > *', '.canais > *', '.chamada', '.citacao-grande', '.colunas-texto',
-    '.filtros', '.checklist-grupos > *', '[data-rv]'
+    '.filtros', '.checklist-grupos > *', '.linha-tempo__etapas > *', '.carrossel', '[data-rv]'
   ].join(',');
 
   function iniciarRevelar() {
@@ -518,8 +714,10 @@
   }
 
   function iniciar() {
+    iniciarAbertura();
     iniciarMenu();
     iniciarGaleriaHome();
+    var atualizarHorizontal = iniciarGaleriaHorizontal();
     iniciarGaleria();
     iniciarDepoimentos();
     iniciarChecklist();
@@ -529,7 +727,9 @@
     iniciarRevelar();
     iniciarContadores();
     iniciarFormulario();
-    iniciarRolagem();
+    iniciarRamos();
+    iniciarMagneticos();
+    iniciarRolagem([atualizarHorizontal]);
   }
 
   if (document.readyState === 'loading') {

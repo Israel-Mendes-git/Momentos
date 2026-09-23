@@ -190,7 +190,7 @@ a { color: var(--rose-forte); }
   letter-spacing: .22em; text-transform: uppercase; text-decoration: none;
   padding: 1.1rem 2.2rem; border: 1px solid transparent;
   border-radius: var(--r-pill); cursor: pointer;
-  transition: color .45s var(--ease), border-color .45s var(--ease), transform .45s var(--ease), box-shadow .45s var(--ease);
+  transition: color .45s var(--ease), border-color .45s var(--ease), transform .45s var(--ease), box-shadow .45s var(--ease), translate .5s var(--ease-suave);
 }
 .btn::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
@@ -613,7 +613,7 @@ body::after {
 .rodape li a:hover { opacity: 1; padding-left: .35rem; }
 .rodape p { color: rgba(247,243,238,.68); font-size: .92rem; max-width: 34ch; }
 .redes { display: flex; gap: .7rem; margin-top: 1.4rem; }
-.redes a { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1px solid rgba(247,243,238,.25); opacity: 1; transition: background .35s, border-color .35s, transform .35s var(--ease-suave); }
+.redes a { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1px solid rgba(247,243,238,.25); opacity: 1; transition: background .35s, border-color .35s, transform .35s var(--ease-suave), translate .5s var(--ease-suave); }
 .redes a:hover { background: var(--rose-forte); border-color: var(--rose-forte); transform: translateY(-3px); }
 .redes svg { width: 1.1rem; height: 1.1rem; }
 .rodape__fim { border-top: 1px solid rgba(247,243,238,.14); margin-top: clamp(2.5rem, 5vw, 3.5rem); padding-top: 1.8rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; font-size: .8rem; color: rgba(247,243,238,.55); }
@@ -635,7 +635,7 @@ body::after {
   display: flex; align-items: center; justify-content: center;
   width: 3.6rem; height: 3.6rem; border-radius: 50%;
   background: var(--rose-forte); color: var(--nata);
-  box-shadow: var(--sombra-md); transition: transform .45s var(--ease-suave), background .35s, opacity .45s;
+  box-shadow: var(--sombra-md); transition: transform .45s var(--ease-suave), background .35s, opacity .45s, translate .5s var(--ease-suave);
 }
 .zap-flutuante::before {
   content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--rose-forte);
@@ -892,16 +892,169 @@ a.canal:hover .canal__icone { background: var(--rose-forte); color: var(--nata);
 .item-check input:checked ~ .item-check__texto { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--taupe); }
 .item-check__texto small { display: block; font-size: .8rem; color: var(--muted); text-decoration: none; }
 
-/* ---------- 24. Movimento reduzido ---------- */
+/* ---------- 24. Ramos botânicos em traço ----------
+   Cada traço tem pathLength=1; o JS marca .desenhado quando o ramo
+   aparece e o CSS desenha as folhas em sequência (--d). */
+.ramo {
+  display: block; pointer-events: none; overflow: visible;
+  fill: none; stroke: currentColor; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round;
+  color: var(--champanhe);
+}
+.js .ramo path { stroke-dasharray: 1 2; stroke-dashoffset: 1; }
+.js .ramo.desenhado path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.4s var(--ease) calc(var(--atraso, 0s) + var(--d) * .85s);
+}
+.ramo--espelho { scale: -1 1; }
+
+.hero__ramo { position: absolute; z-index: 1; width: clamp(6.5rem, 11vw, 9.5rem); left: -4.2rem; top: -2.2rem; --atraso: 1.2s; }
+.hero__ramo--b { left: auto; top: auto; right: -3.6rem; bottom: -1.2rem; rotate: 150deg; width: clamp(5.5rem, 9vw, 8rem); --atraso: 1.6s; }
+@media (max-width: 860px) { .hero__ramo { left: -2.4rem; top: -1.6rem; } .hero__ramo--b { right: -1.8rem; } }
+
+.cabeca-pagina__ramo { position: absolute; z-index: -1; width: clamp(7rem, 15vw, 13rem); bottom: 8%; left: clamp(-2rem, 3vw, 4rem); opacity: .9; }
+.cabeca-pagina__ramo.ramo--espelho { left: auto; right: clamp(-2rem, 3vw, 4rem); }
+@media (max-width: 640px) { .cabeca-pagina__ramo { opacity: .45; bottom: 2%; } }
+
+.chamada__ramo { position: absolute !important; z-index: 0; width: clamp(5.5rem, 11vw, 9rem); color: var(--champanhe); opacity: .75; left: clamp(1.2rem, 3vw, 2.6rem); bottom: clamp(1.2rem, 3vw, 2.4rem); }
+.chamada__ramo.ramo--espelho { left: auto; right: clamp(1.2rem, 3vw, 2.6rem); bottom: auto; top: clamp(1.2rem, 3vw, 2.4rem); rotate: 180deg; }
+@media (max-width: 640px) { .chamada__ramo { opacity: .35; } }
+
+.citacao-grande { position: relative; }
+.citacao__ramo { position: absolute; width: clamp(5rem, 9vw, 7.5rem); top: 50%; translate: 0 -50%; left: clamp(-7rem, -6vw, -2rem); rotate: -12deg; }
+.citacao__ramo.ramo--espelho { left: auto; right: clamp(-7rem, -6vw, -2rem); rotate: 12deg; }
+@media (max-width: 900px) { .citacao__ramo { display: none; } }
+
+/* ---------- 25. Divisórias em curva ----------
+   A seção com .curva "sobe" sobre a anterior num arco suave. */
+.curva, .rodape { --curva-h: clamp(26px, 5vw, 70px); }
+.curva::before, .rodape::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: calc(100% - 1px); height: var(--curva-h);
+  background: inherit; clip-path: ellipse(72% 100% at 50% 100%); pointer-events: none;
+}
+.rodape { overflow: visible; }
+.rodape__marca-dagua-caixa { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+
+/* ---------- 26. Depoimentos em carrossel ---------- */
+.carrossel { max-width: 54rem; margin-inline: auto; text-align: center; }
+.carrossel__trilho { display: grid; }
+.carrossel__slide {
+  grid-area: 1 / 1; display: flex; flex-direction: column; align-items: center; gap: 1.6rem;
+  opacity: 0; visibility: hidden; translate: 0 14px;
+  transition: opacity .8s var(--ease), translate 1s var(--ease-suave), visibility 0s .8s;
+}
+.carrossel__slide.ativo { opacity: 1; visibility: visible; translate: 0 0; transition: opacity .9s var(--ease) .15s, translate 1.1s var(--ease-suave) .15s, visibility 0s; }
+.carrossel__aspas { font-family: var(--f-titulo); font-size: 6rem; line-height: .5; height: 2.4rem; color: var(--rose); opacity: .4; margin: 0; }
+.carrossel blockquote {
+  margin: 0; font-family: var(--f-titulo); font-style: italic; font-weight: 300;
+  font-size: clamp(1.35rem, 2.6vw, 2rem); line-height: 1.45; color: var(--grafite);
+}
+.carrossel__autor b { display: block; font-family: var(--f-titulo); font-weight: 400; font-size: 1.3rem; }
+.carrossel__autor span { font-size: .7rem; letter-spacing: .24em; text-transform: uppercase; color: var(--castanho); }
+.carrossel__controles { display: flex; align-items: center; justify-content: center; gap: 1.4rem; margin-top: 2.6rem; }
+.carrossel__seta {
+  display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 50%; cursor: pointer;
+  background: transparent; border: 1px solid var(--linha); color: var(--grafite);
+  transition: background .35s, color .35s, border-color .35s, translate .35s var(--ease-suave);
+}
+.carrossel__seta:hover { background: var(--grafite); color: var(--linho); border-color: var(--grafite); }
+.carrossel__seta svg { width: 1.1rem; height: 1.1rem; }
+.carrossel__seta[data-dir="-1"] svg { rotate: 180deg; }
+.carrossel__pontos { display: flex; gap: .6rem; }
+.carrossel__ponto { position: relative; width: 2.4rem; height: 2px; padding: .7rem 0; border: 0; cursor: pointer; background: none; }
+.carrossel__ponto::before, .carrossel__ponto::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; translate: 0 -50%; border-radius: 2px; }
+.carrossel__ponto::before { background: var(--linha); }
+.carrossel__ponto::after { background: var(--rose); scale: 0 1; transform-origin: left; }
+.carrossel__ponto[aria-current="true"]::after { scale: 1 1; transition: scale .4s var(--ease); }
+.carrossel.tocando .carrossel__ponto[aria-current="true"]::after { scale: 0 1; animation: enche-ponto var(--intervalo, 7s) linear forwards; }
+.carrossel.pausado .carrossel__ponto[aria-current="true"]::after { animation-play-state: paused; }
+@keyframes enche-ponto { from { scale: 0 1; } to { scale: 1 1; } }
+
+/* ---------- 27. Linha do tempo ("Como funciona") ---------- */
+.linha-tempo { position: relative; --p: 0; }
+.linha-tempo__trilho { position: absolute; left: 12.5%; right: 12.5%; top: 1.6rem; height: 1px; background: var(--linha); }
+.linha-tempo__trilho span { position: absolute; inset: 0; background: linear-gradient(90deg, var(--champanhe), var(--rose)); transform-origin: left; scale: var(--p) 1; }
+.linha-tempo__etapas { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 2.5vw, 2.5rem); position: relative; }
+.linha-tempo__etapa { text-align: center; }
+.linha-tempo__marco {
+  display: grid; place-items: center; width: 3.2rem; height: 3.2rem; margin: 0 auto 1.6rem; border-radius: 50%;
+  background: var(--linho); border: 1px solid var(--linha); color: var(--rose);
+  font-family: var(--f-titulo); font-style: italic; font-size: 1.25rem;
+  transition: background .6s var(--ease), color .6s var(--ease), border-color .6s var(--ease), scale .6s var(--ease-suave), box-shadow .6s;
+}
+.linha-tempo__etapa.ativo .linha-tempo__marco { background: var(--rose-forte); border-color: var(--rose-forte); color: var(--nata); scale: 1.1; box-shadow: 0 0 0 6px var(--linho), 0 0 0 7px var(--areia); }
+.linha-tempo__etapa h3 { margin-bottom: .7rem; }
+.linha-tempo__etapa p { color: var(--muted); font-size: .93rem; margin: 0 auto; max-width: 26ch; }
+@media (max-width: 760px) {
+  .linha-tempo__trilho { left: 1.6rem; right: auto; top: 1.6rem; bottom: 1.6rem; width: 1px; height: auto; }
+  .linha-tempo__trilho span { transform-origin: top; scale: 1 var(--p); background: linear-gradient(180deg, var(--champanhe), var(--rose)); }
+  .linha-tempo__etapas { grid-template-columns: 1fr; gap: 2.2rem; }
+  .linha-tempo__etapa { text-align: left; position: relative; padding-left: 4.8rem; min-height: 3.2rem; }
+  .linha-tempo__marco { position: absolute; left: 0; top: 0; margin: 0; }
+  .linha-tempo__etapa p { margin: 0; max-width: none; }
+}
+
+/* ---------- 28. Galeria horizontal (teste) ---------- */
+.galeria-horizontal { position: relative; }
+.galeria-horizontal__palco { position: sticky; top: 0; height: 100vh; height: 100dvh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; padding-top: 4.5rem; }
+.galeria-horizontal__trilho { display: flex; align-items: center; gap: clamp(1rem, 2vw, 1.8rem); padding-inline: clamp(1.25rem, 6vw, 6rem); width: max-content; will-change: transform; }
+.galeria-horizontal__intro { width: min(26rem, 80vw); flex: none; padding-right: clamp(1rem, 4vw, 4rem); }
+.galeria-horizontal__intro .t-secao { margin-bottom: 1.4rem; }
+.galeria-horizontal .galeria-item { flex: none; height: min(54vh, 470px); width: auto; margin: 0; }
+.galeria-horizontal .galeria-item .foto { height: 100%; width: auto; }
+.galeria-horizontal .galeria-item:nth-child(even) { translate: 0 2.4rem; }
+.galeria-horizontal__fim { flex: none; width: min(22rem, 70vw); text-align: center; }
+.galeria-horizontal__fim p { font-family: var(--f-titulo); font-style: italic; font-size: 1.6rem; color: var(--grafite); margin-bottom: 1.2rem; }
+.galeria-horizontal__progresso { position: absolute; left: clamp(1.25rem, 6vw, 6rem); right: clamp(1.25rem, 6vw, 6rem); bottom: clamp(1.5rem, 5vh, 3rem); height: 1px; background: var(--linha); }
+.galeria-horizontal__progresso span { position: absolute; inset: 0; background: var(--rose); transform-origin: left; scale: var(--p, 0) 1; }
+/* sem fixar: celular e movimento reduzido rolam na horizontal com o dedo */
+.galeria-horizontal:not(.fixada) .galeria-horizontal__palco { position: static; height: auto; padding-block: var(--secao); }
+.galeria-horizontal:not(.fixada) .galeria-horizontal__trilho { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1.5rem; scrollbar-width: thin; }
+.galeria-horizontal:not(.fixada) .galeria-item { height: min(52vh, 420px); scroll-snap-align: center; }
+.galeria-horizontal:not(.fixada) .galeria-horizontal__progresso { display: none; }
+.galeria-horizontal:not(.fixada) .galeria-item:nth-child(even) { translate: none; }
+
+/* ---------- 29. Abertura com monograma (teste) ---------- */
+.abertura {
+  position: fixed; inset: 0; z-index: 500; display: grid; place-content: center; justify-items: center; gap: .6rem;
+  background: var(--linho); color: var(--rose-forte);
+}
+.abertura svg { width: clamp(9rem, 22vw, 14rem); overflow: visible; }
+.abertura text {
+  font-family: var(--f-titulo); font-style: italic; font-weight: 300; font-size: 96px;
+  fill: currentColor; fill-opacity: 0; stroke: currentColor; stroke-width: .8;
+  stroke-dasharray: 900; stroke-dashoffset: 900;
+  animation: monograma-traco 1.7s var(--ease) .2s forwards, monograma-cor .6s var(--ease) 1.5s forwards;
+}
+.abertura p { margin: 0; font-size: .66rem; letter-spacing: .42em; text-transform: uppercase; color: var(--castanho); opacity: 0; animation: aparece .8s var(--ease) 1.2s forwards; }
+.abertura__linha { width: 6rem; height: 1px; background: var(--champanhe); scale: 0 1; animation: abre-linha 1s var(--ease-suave) 1s forwards; }
+.abertura.sai { animation: abertura-sai 1s var(--ease-suave) forwards; }
+@keyframes monograma-traco { to { stroke-dashoffset: 0; } }
+@keyframes monograma-cor { to { fill-opacity: 1; stroke-opacity: 0; } }
+@keyframes abre-linha { to { scale: 1 1; } }
+@keyframes abertura-sai { to { clip-path: inset(0 0 100% 0); } }
+/* a entrada do hero espera a abertura terminar */
+.abrindo .entrada > *, .abrindo .entrada .t-hero em, .abrindo .hero__foto, .abrindo .hero__foto::before,
+.abrindo .hero__moldura, .abrindo .selo { animation-play-state: paused; }
+
+/* ---------- 30. Página 404 ---------- */
+.erro__links { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1.6rem; margin-top: 2.4rem; }
+.erro__links a { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; color: var(--castanho); transition: color .3s; }
+.erro__links a:hover { color: var(--rose-forte); }
+.cabeca-pagina .hero__acoes { justify-content: center; }
+.cabeca-pagina[data-palavra="404"]::before { font-size: clamp(12rem, 34vw, 28rem); top: 46%; opacity: .45; }
+
+/* ---------- 31. Movimento reduzido ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
   .js .rv { opacity: 1; transform: none; }
   .faixa-rolante__trilho { animation: none; }
+  .js .ramo path { stroke-dashoffset: 0; }
 }
 
-/* ---------- 25. Impressão ---------- */
+/* ---------- 32. Impressão ---------- */
 @media print {
+  .abertura, .curva::before, .rodape::before,
   body::before, body::after, .topo, .zap-flutuante, .rodape, .chamada, .btn, .checklist-barra .abas, .checklist-acoes, .cabeca-pagina::before { display: none !important; }
   body { background: #fff; font-size: 11pt; }
   .secao { padding-block: 1rem; }
