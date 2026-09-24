@@ -6,7 +6,9 @@
      arquivo  → caminho da imagem dentro de assets/img/
      alt      → descrição da foto para leitores de tela (obrigatório)
      tipo     → "casamento" | "infantil"  (usado no filtro da galeria)
-     destaque → true aparece também na home (use 6 fotos)
+     destaque → hoje não muda nada: a home passou a mostrar o
+                carrossel de dados/momentos.js no lugar da grade.
+                O campo só volta a valer se a grade voltar.
      proporcao→ "1:1", "4:5", "3:2", "16:9"
    ========================================================= */
 window.GALERIA = [

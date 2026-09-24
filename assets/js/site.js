@@ -161,7 +161,10 @@
     return fig;
   }
 
-  /* ---------- Galeria resumida da home (dados/galeria.js) ---------- */
+  /* ---------- Galeria resumida em grade (dados/galeria.js) ----------
+     Monta a grade de destaques em quem tiver um #galeria-home. A home
+     usa o carrossel de momentos no lugar dela, mas a função fica aqui
+     para o caso de a grade voltar em alguma página. */
   function iniciarGaleriaHome() {
     var alvo = document.getElementById('galeria-home');
     if (!alvo || !window.GALERIA) return;
@@ -401,6 +404,126 @@
     var inicioX = null;
     alvo.addEventListener('touchstart', function (e) { inicioX = e.touches[0].clientX; }, { passive: true });
     alvo.addEventListener('touchend', function (e) {
+      if (inicioX === null) return;
+      var dx = e.changedTouches[0].clientX - inicioX;
+      if (Math.abs(dx) > 50) { ir(atual + (dx < 0 ? 1 : -1)); reiniciar(); }
+      inicioX = null;
+    });
+
+    ir(0);
+    tocar();
+  }
+
+  /* ---------- Carrossel de momentos (dados/momentos.js) ----------
+     Um momento por vez: a foto do evento ocupa o fundo e o texto
+     fica na frente. Troca sozinho a cada 7s, pausa com o mouse em
+     cima ou com o foco dentro, e não gira com movimento reduzido. */
+  function iniciarMomentos() {
+    var secao = document.querySelector('[data-momentos]');
+    if (!secao || !window.MOMENTOS || !window.MOMENTOS.length) return;
+
+    var lista = window.MOMENTOS;
+    var fotos = secao.querySelector('.momentos__fotos');
+    var palco = secao.querySelector('.momentos__palco');
+    var pontos = secao.querySelector('.carrossel__pontos');
+    var INTERVALO = 7000;
+    var atual = 0, timer = null;
+    secao.style.setProperty('--intervalo', INTERVALO + 'ms');
+
+    var cenas = [], textos = [];
+
+    lista.forEach(function (mo, i) {
+      // a foto do fundo: iniciarFundos() cuida do --img e do aviso
+      // enquanto o arquivo não existir em assets/img/
+      var cena = document.createElement('div');
+      cena.className = 'momentos__cena';
+      cena.dataset.fundo = mo.foto || '';
+      cena.dataset.sobDemanda = '';   // quem carrega é o ir(), logo abaixo
+      fotos.appendChild(cena);
+      cenas.push(cena);
+
+      var bloco = document.createElement('article');
+      bloco.className = 'momentos__texto';
+      bloco.setAttribute('role', 'group');
+      bloco.setAttribute('aria-roledescription', 'momento');
+      bloco.setAttribute('aria-label', (i + 1) + ' de ' + lista.length);
+      bloco.innerHTML = '<p class="momentos__evento"></p><h3 class="momentos__titulo"></h3>' +
+                        '<p class="momentos__frase"></p><p class="so-leitor-de-tela"></p>';
+      bloco.querySelector('.momentos__evento').textContent = mo.evento || '';
+      bloco.querySelector('.momentos__titulo').textContent = mo.titulo || '';
+      bloco.querySelector('.momentos__frase').textContent = mo.frase || '';
+      // a foto é decorativa no fundo; a descrição dela vai no texto
+      bloco.querySelector('.so-leitor-de-tela').textContent = mo.alt ? 'Foto: ' + mo.alt : '';
+      palco.appendChild(bloco);
+      textos.push(bloco);
+
+      var ponto = document.createElement('button');
+      ponto.type = 'button';
+      ponto.className = 'carrossel__ponto';
+      ponto.setAttribute('aria-label', 'Momento ' + (i + 1) + (mo.titulo ? ': ' + mo.titulo : ''));
+      ponto.addEventListener('click', function () { ir(i); reiniciar(); });
+      if (pontos) pontos.appendChild(ponto);
+    });
+
+    // só baixa a foto em cena e a seguinte: as outras esperam a vez
+    var perto = false;
+    function garantirFotos() {
+      if (!perto) return;
+      carregarFundo(cenas[atual]);
+      carregarFundo(cenas[(atual + 1) % cenas.length]);
+    }
+    aoAproximar(fotos, function () { perto = true; garantirFotos(); });
+
+    function ir(i) {
+      atual = (i + textos.length) % textos.length;
+      garantirFotos();
+      cenas.forEach(function (c, k) { c.classList.toggle('ativa', k === atual); });
+      textos.forEach(function (t, k) {
+        t.classList.toggle('ativo', k === atual);
+        t.setAttribute('aria-hidden', k === atual ? 'false' : 'true');
+      });
+      if (pontos) pontos.querySelectorAll('.carrossel__ponto').forEach(function (p, k) {
+        p.setAttribute('aria-current', k === atual ? 'true' : 'false');
+      });
+      if (timer) reiniciarBarra();
+    }
+
+    // a barrinha do ponto ativo enche no tempo do intervalo; recomeça a cada troca
+    function reiniciarBarra() {
+      secao.classList.remove('tocando');
+      void secao.offsetWidth;
+      secao.classList.add('tocando');
+    }
+
+    function tocar() {
+      if (menosMovimento || textos.length < 2) return;
+      parar();
+      timer = setInterval(function () { ir(atual + 1); }, INTERVALO);
+      palco.setAttribute('aria-live', 'off');
+      reiniciarBarra();
+    }
+    // girando sozinho, o leitor de tela não anuncia cada troca; parado, anuncia
+    function parar() { clearInterval(timer); timer = null; palco.setAttribute('aria-live', 'polite'); }
+    function reiniciar() { if (!secao.classList.contains('pausado')) tocar(); }
+
+    secao.querySelectorAll('.carrossel__seta').forEach(function (b) {
+      b.addEventListener('click', function () { ir(atual + (+b.dataset.dir)); reiniciar(); });
+    });
+    secao.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { ir(atual - 1); reiniciar(); }
+      if (e.key === 'ArrowRight') { ir(atual + 1); reiniciar(); }
+    });
+    function pausar() { secao.classList.add('pausado'); parar(); }
+    function retomar() { secao.classList.remove('pausado'); tocar(); }
+    secao.addEventListener('mouseenter', pausar);
+    secao.addEventListener('mouseleave', function () { if (!secao.contains(document.activeElement)) retomar(); });
+    secao.addEventListener('focusin', pausar);
+    secao.addEventListener('focusout', function (e) { if (!secao.contains(e.relatedTarget)) retomar(); });
+
+    // deslizar no celular
+    var inicioX = null;
+    secao.addEventListener('touchstart', function (e) { inicioX = e.touches[0].clientX; }, { passive: true });
+    secao.addEventListener('touchend', function (e) {
       if (inicioX === null) return;
       var dx = e.changedTouches[0].clientX - inicioX;
       if (Math.abs(dx) > 50) { ir(atual + (dx < 0 ? 1 : -1)); reiniciar(); }
@@ -749,6 +872,7 @@
     iniciarAbertura();
     iniciarMenu();
     iniciarGaleriaHome();
+    iniciarMomentos();
     var atualizarHorizontal = iniciarGaleriaHorizontal();
     iniciarGaleria();
     iniciarDepoimentos();

@@ -97,8 +97,38 @@
     </div>
   </section>
 
+  <!-- ========== MOMENTOS (carrossel) ========== -->
+  <section class="momentos" data-momentos data-revelar
+           role="region" aria-roledescription="carrossel" aria-label="Por dentro dos momentos">
+    <div class="container">
+
+      <div class="cabeca-secao momentos__cabeca" data-rv>
+        <p class="sobrancelha-serif">Por dentro</p>
+        <h2 class="t-secao">O que aconteceu <em>em cada um</em></h2>
+      </div>
+
+      <div class="momentos__grade" data-rv>
+        <!-- a foto de cada momento — preenchida por dados/momentos.js -->
+        <div class="momentos__fotos" aria-hidden="true"></div>
+
+        <div class="momentos__lado">
+          <div class="momentos__palco" aria-live="polite"><!-- preenchido por dados/momentos.js --></div>
+          <div class="carrossel__controles">
+            <button class="carrossel__seta" type="button" data-dir="-1" aria-label="Momento anterior"><svg aria-hidden="true"><use href="#i-seta"></use></svg></button>
+            <div class="carrossel__pontos"></div>
+            <button class="carrossel__seta" type="button" data-dir="1" aria-label="Próximo momento"><svg aria-hidden="true"><use href="#i-seta"></use></svg></button>
+          </div>
+          <p class="momentos__saida">
+            <a class="link-seta" href="#todas-as-fotos">Ver todas as fotos <svg aria-hidden="true"><use href="#i-seta"></use></svg></a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ========== GALERIA ========== -->
-  <section class="secao" style="padding-top:0" data-revelar>
+  <section class="secao" id="todas-as-fotos" data-revelar>
     <div class="container">
       <div class="filtros" role="group" aria-label="Filtrar fotos por tipo de evento">
         <button class="filtro" type="button" data-filtro="todos" aria-pressed="true">Todos <small></small></button>
@@ -191,6 +221,7 @@
 </a>
 
 <script src="dados/galeria.js"></script>
+<script src="dados/momentos.js"></script>
 <script src="assets/js/site.js"></script>
 </body>
 </html>

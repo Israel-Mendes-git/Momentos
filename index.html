@@ -283,17 +283,33 @@
     </div>
   </section>
 
-  <!-- ========== GALERIA ========== -->
-  <section class="secao" id="galeria" data-revelar>
+  <!-- ========== MOMENTOS (carrossel) ========== -->
+  <section class="momentos" id="galeria" data-momentos data-revelar
+           role="region" aria-roledescription="carrossel" aria-label="Momentos que já aconteceram">
     <div class="container">
-      <div class="cabeca-secao centro">
+
+      <div class="cabeca-secao momentos__cabeca" data-rv>
         <p class="sobrancelha-serif">Registros</p>
         <h2 class="t-secao">Momentos que <em>já aconteceram</em></h2>
       </div>
-      <div class="grid-3 galeria-home" id="galeria-home"><!-- preenchido por dados/galeria.js --></div>
-      <p class="centro-texto" style="margin-top:2.8rem" data-rv>
-        <a class="link-seta" href="galeria.html">Ver a galeria completa <svg aria-hidden="true"><use href="#i-seta"></use></svg></a>
-      </p>
+
+      <div class="momentos__grade" data-rv>
+        <!-- a foto de cada momento — preenchida por dados/momentos.js -->
+        <div class="momentos__fotos" aria-hidden="true"></div>
+
+        <div class="momentos__lado">
+          <div class="momentos__palco" aria-live="polite"><!-- preenchido por dados/momentos.js --></div>
+          <div class="carrossel__controles">
+            <button class="carrossel__seta" type="button" data-dir="-1" aria-label="Momento anterior"><svg aria-hidden="true"><use href="#i-seta"></use></svg></button>
+            <div class="carrossel__pontos"></div>
+            <button class="carrossel__seta" type="button" data-dir="1" aria-label="Próximo momento"><svg aria-hidden="true"><use href="#i-seta"></use></svg></button>
+          </div>
+          <p class="momentos__saida">
+            <a class="link-seta" href="galeria.html">Ver a galeria completa <svg aria-hidden="true"><use href="#i-seta"></use></svg></a>
+          </p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -418,7 +434,7 @@
   <span class="so-leitor-de-tela">Falar no WhatsApp</span>
 </a>
 
-<script src="dados/galeria.js"></script>
+<script src="dados/momentos.js"></script>
 <script src="dados/depoimentos.js"></script>
 <script src="assets/js/site.js"></script>
 </body>
