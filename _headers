@@ -1,0 +1,21 @@
+# Cache dos arquivos estáticos (lido pelo Cloudflare Pages e pelo Netlify).
+# O HTML fica de fora de propósito: ele é revalidado a cada visita, senão
+# uma correção de texto demoraria a aparecer para quem já visitou o site.
+
+# As fontes nunca mudam: mesmo nome, mesmo arquivo, para sempre.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fotos podem ser trocadas mantendo o nome, então uma semana é o limite.
+/assets/img/*
+  Cache-Control: public, max-age=604800
+
+# CSS, JS e dados são editados à mão: uma hora, para a correção circular rápido.
+/assets/css/*
+  Cache-Control: public, max-age=3600
+
+/assets/js/*
+  Cache-Control: public, max-age=3600
+
+/dados/*
+  Cache-Control: public, max-age=3600
