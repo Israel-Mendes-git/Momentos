@@ -611,18 +611,34 @@
     return atualizar;
   }
 
-  /* ---------- Abertura com monograma (página de teste) ---------- */
+  /* ---------- Abertura com monograma ----------
+     Quem faz a cortina subir é o CSS (assim ela sai mesmo se algo
+     quebrar aqui). Daqui só soltamos o hero quando ela começa a
+     subir e tiramos o elemento quando ela termina. */
   function iniciarAbertura() {
     var abertura = document.querySelector('.abertura');
     if (!abertura) return;
     var raiz = document.documentElement;
-    setTimeout(function () {
-      abertura.classList.add('sai');
-      raiz.classList.remove('abrindo');
-      abertura.addEventListener('animationend', function (e) {
-        if (e.animationName === 'abertura-sai') abertura.remove();
-      });
-    }, menosMovimento ? 0 : 2300);
+    var fechado = false;
+
+    function soltar() { raiz.classList.remove('abrindo'); }
+    function fechar() {
+      if (fechado) return;
+      fechado = true;
+      soltar();
+      abertura.remove();
+    }
+
+    if (menosMovimento) { fechar(); return; }
+
+    abertura.addEventListener('animationstart', function (e) {
+      if (e.animationName === 'abertura-sai') soltar();
+    });
+    abertura.addEventListener('animationend', function (e) {
+      if (e.animationName === 'abertura-sai') fechar();
+    });
+    // rede de segurança: a tela nunca fica coberta se a animação falhar
+    setTimeout(fechar, 5000);
   }
 
   /* ---------- Foto de fundo dos blocos de chamada ---------- */

@@ -21,7 +21,17 @@
 <meta property="og:image:alt" content="Adeline Mendes Cerimonial — assessoria de casamentos e festas em Cascavel, CE">
 <meta name="twitter:card" content="summary_large_image">
 
-<script>document.documentElement.classList.add('js')</script>
+<script>
+/* marca a raiz antes da primeira pintura: 'abrindo' segura a entrada do
+   hero e 'ja-visitou' encurta a abertura nas trocas de página */
+(function (r) {
+  r.classList.add('js', 'abrindo');
+  try {
+    if (sessionStorage.getItem('am-visitou')) r.classList.add('ja-visitou');
+    sessionStorage.setItem('am-visitou', '1');
+  } catch (e) {}
+})(document.documentElement);
+</script>
 <link rel="stylesheet" href="assets/css/fontes.css">
 <link rel="stylesheet" href="assets/css/site.css">
 
@@ -42,6 +52,12 @@
 <body id="topo">
 
 <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+<div class="abertura" aria-hidden="true">
+  <svg viewBox="0 0 200 110"><text x="100" y="84" text-anchor="middle">AM</text></svg>
+  <span class="abertura__linha"></span>
+  <p>Adeline Mendes · Cerimonial</p>
+</div>
 
 <!-- Ícones usados no site -->
 <svg hidden aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
