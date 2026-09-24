@@ -238,6 +238,7 @@ a { color: var(--rose-forte); }
    no recorte arredondado da figura. */
 .foto {
   --zoom: 1;
+  --img: none;   /* trocado pelo arquivo quando a foto chega perto da tela */
   position: relative; overflow: hidden; isolation: isolate;
   border-radius: var(--r);
   background-color: var(--areia);
@@ -558,6 +559,7 @@ body::after {
 
 /* ---------- 15. Chamada final ---------- */
 .chamada {
+  --img: none;
   position: relative; border-radius: calc(var(--r) * 1.5); overflow: hidden; isolation: isolate;
   text-align: center; padding: clamp(4rem, 9vw, 7.5rem) clamp(1.5rem, 5vw, 4rem);
 }

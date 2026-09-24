@@ -94,31 +94,54 @@
     window.addEventListener('resize', pedir);
   }
 
-  /* ---------- Placeholders de foto ----------
-     Cada .foto aponta para um arquivo via --img: url(...).
-     Enquanto o arquivo não existir, mostramos o nome esperado.
-     Assim que a imagem for salva com aquele nome, o aviso some. */
+  /* ---------- Fotos: carregamento por aproximação ----------
+     Cada .foto aponta para um arquivo via --img: url(...), e cada bloco
+     com data-fundo faz o mesmo. Para a página não baixar as fotos todas
+     de uma vez, o arquivo só é pedido quando o bloco chega perto da
+     tela (uma tela de antecedência). Enquanto o arquivo não existir,
+     mostramos o nome esperado; assim que for salvo, o aviso some. */
+  var observadorFotos = null;
+
+  function aoAproximar(el, carregar) {
+    if (!('IntersectionObserver' in window)) { carregar(); return; }
+    if (!observadorFotos) {
+      observadorFotos = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (entrada) {
+          if (!entrada.isIntersecting) return;
+          observadorFotos.unobserve(entrada.target);
+          var fn = entrada.target._carregarFoto;
+          if (fn) { delete entrada.target._carregarFoto; fn(); }
+        });
+      }, { rootMargin: '100% 0px' });
+    }
+    el._carregarFoto = carregar;
+    observadorFotos.observe(el);
+  }
+
   function prepararFoto(fig) {
     var caminho = fig.dataset.arquivo;
-    fig.style.setProperty('--img', "url('" + caminho + "')");
 
-    var teste = new Image();
-    teste.onload = function () {
-      fig.classList.remove('sem-foto');
-      var aviso = fig.querySelector('.foto__aviso');
-      if (aviso) aviso.remove();
-    };
-    teste.onerror = function () {
-      fig.classList.add('sem-foto');
-      if (fig.querySelector('.foto__aviso')) return;
-      var aviso = document.createElement('span');
-      aviso.className = 'foto__aviso';
-      aviso.setAttribute('aria-hidden', 'true');
-      aviso.innerHTML = '<b>' + caminho.split('/').pop() + '</b>' +
-                        '<span>' + (fig.dataset.proporcao || '') + '</span>';
-      fig.appendChild(aviso);
-    };
-    teste.src = caminho;
+    aoAproximar(fig, function () {
+      fig.style.setProperty('--img', "url('" + caminho + "')");
+
+      var teste = new Image();
+      teste.onload = function () {
+        fig.classList.remove('sem-foto');
+        var aviso = fig.querySelector('.foto__aviso');
+        if (aviso) aviso.remove();
+      };
+      teste.onerror = function () {
+        fig.classList.add('sem-foto');
+        if (fig.querySelector('.foto__aviso')) return;
+        var aviso = document.createElement('span');
+        aviso.className = 'foto__aviso';
+        aviso.setAttribute('aria-hidden', 'true');
+        aviso.innerHTML = '<b>' + caminho.split('/').pop() + '</b>' +
+                          '<span>' + (fig.dataset.proporcao || '') + '</span>';
+        fig.appendChild(aviso);
+      };
+      teste.src = caminho;
+    });
   }
 
   function iniciarFotos() {
@@ -480,20 +503,29 @@
   }
 
   /* ---------- Foto de fundo dos blocos de chamada ---------- */
-  function iniciarFundos() {
-    document.querySelectorAll('[data-fundo]').forEach(function (el) {
-      var caminho = el.dataset.fundo;
-      el.style.setProperty('--img', "url('" + caminho + "')");
+  function carregarFundo(el) {
+    var caminho = el.dataset.fundo;
+    if (!caminho || el.dataset.carregada) return;
+    el.dataset.carregada = '1';
+    el.style.setProperty('--img', "url('" + caminho + "')");
 
-      var teste = new Image();
-      teste.onerror = function () {
-        var aviso = document.createElement('span');
-        aviso.className = 'fundo__aviso';
-        aviso.setAttribute('aria-hidden', 'true');
-        aviso.textContent = caminho.split('/').pop() + (el.dataset.proporcao ? ' · ' + el.dataset.proporcao : '');
-        el.appendChild(aviso);
-      };
-      teste.src = caminho;
+    var teste = new Image();
+    teste.onerror = function () {
+      if (el.querySelector('.fundo__aviso')) return;
+      var aviso = document.createElement('span');
+      aviso.className = 'fundo__aviso';
+      aviso.setAttribute('aria-hidden', 'true');
+      aviso.textContent = caminho.split('/').pop() + (el.dataset.proporcao ? ' · ' + el.dataset.proporcao : '');
+      el.appendChild(aviso);
+    };
+    teste.src = caminho;
+  }
+
+  /* os blocos marcados com data-sob-demanda têm quem os carregue
+     (o carrossel de momentos pede a foto de cada cena na hora certa) */
+  function iniciarFundos() {
+    document.querySelectorAll('[data-fundo]:not([data-sob-demanda])').forEach(function (el) {
+      aoAproximar(el, function () { carregarFundo(el); });
     });
   }
 
