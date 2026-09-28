@@ -102,6 +102,14 @@
      mostramos o nome esperado; assim que for salvo, o aviso some. */
   var observadorFotos = null;
 
+  /* O --img entra só depois que a foto carregou, e com o endereço
+     completo: o Chrome resolve um url() relativo guardado em variável
+     a partir do site.css (assets/css/), não da página, e ainda pede de
+     novo o arquivo que falta a cada recálculo de estilo. */
+  function urlCss(caminho) {
+    return 'url("' + new URL(caminho, document.baseURI).href + '")';
+  }
+
   function aoAproximar(el, carregar) {
     if (!('IntersectionObserver' in window)) { carregar(); return; }
     if (!observadorFotos) {
@@ -122,10 +130,9 @@
     var caminho = fig.dataset.arquivo;
 
     aoAproximar(fig, function () {
-      fig.style.setProperty('--img', "url('" + caminho + "')");
-
       var teste = new Image();
       teste.onload = function () {
+        fig.style.setProperty('--img', urlCss(caminho));
         fig.classList.remove('sem-foto');
         var aviso = fig.querySelector('.foto__aviso');
         if (aviso) aviso.remove();
@@ -646,9 +653,9 @@
     var caminho = el.dataset.fundo;
     if (!caminho || el.dataset.carregada) return;
     el.dataset.carregada = '1';
-    el.style.setProperty('--img', "url('" + caminho + "')");
 
     var teste = new Image();
+    teste.onload = function () { el.style.setProperty('--img', urlCss(caminho)); };
     teste.onerror = function () {
       if (el.querySelector('.fundo__aviso')) return;
       var aviso = document.createElement('span');
