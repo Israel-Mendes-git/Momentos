@@ -53,18 +53,22 @@
     var agendado = false;
     function atualizar() {
       agendado = false;
+      // primeiro todas as leituras de posição, depois todas as escritas:
+      // intercalar as duas obriga o navegador a refazer o layout no meio
       var y = window.scrollY;
       var alturaVisivel = window.innerHeight;
+      var total = topo ? document.documentElement.scrollHeight - alturaVisivel : 0;
+      var caixasParalaxe = paralaxes.map(function (el) { return el.getBoundingClientRect(); });
+      var caixasTempo = linhasTempo.map(function (lt) { return lt.getBoundingClientRect(); });
 
       if (topo) {
         topo.classList.toggle('rolou', y > 12);
-        var total = document.documentElement.scrollHeight - alturaVisivel;
         progresso.style.setProperty('--progresso', total > 0 ? Math.min(y / total, 1) : 0);
       }
       if (zap) zap.classList.toggle('aparece', y > alturaVisivel * .5);
 
-      paralaxes.forEach(function (el) {
-        var caixa = el.getBoundingClientRect();
+      paralaxes.forEach(function (el, i) {
+        var caixa = caixasParalaxe[i];
         if (caixa.bottom < -200 || caixa.top > alturaVisivel + 200) return;
         var centro = caixa.top + caixa.height / 2 - alturaVisivel / 2;
         if (el.classList.contains('chamada')) {
@@ -76,8 +80,8 @@
       });
 
       // linha do tempo: o fio enche conforme a seção sobe na tela
-      linhasTempo.forEach(function (lt) {
-        var caixa = lt.getBoundingClientRect();
+      linhasTempo.forEach(function (lt, i) {
+        var caixa = caixasTempo[i];
         var p = (alturaVisivel * .8 - caixa.top) / Math.max(caixa.height, alturaVisivel * .45);
         p = Math.min(Math.max(p, 0), 1);
         lt.style.setProperty('--p', p.toFixed(3));
@@ -377,9 +381,11 @@
 
     // a barrinha do ponto ativo enche no tempo do intervalo; recomeça a cada troca
     function reiniciarBarra() {
+      // recomeça a animação no quadro seguinte, sem forçar um layout agora
       alvo.classList.remove('tocando');
-      void alvo.offsetWidth;
-      alvo.classList.add('tocando');
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { alvo.classList.add('tocando'); });
+      });
     }
 
     function tocar() {
@@ -497,9 +503,11 @@
 
     // a barrinha do ponto ativo enche no tempo do intervalo; recomeça a cada troca
     function reiniciarBarra() {
+      // recomeça a animação no quadro seguinte, sem forçar um layout agora
       secao.classList.remove('tocando');
-      void secao.offsetWidth;
-      secao.classList.add('tocando');
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { secao.classList.add('tocando'); });
+      });
     }
 
     function tocar() {
