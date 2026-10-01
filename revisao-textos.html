@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Revisão dos textos do site — Adeline Mendes Cerimonial</title>
+<!--
+  ====================================================================
+  ARQUIVO INTERNO — NAO faz parte do site publico.
+  Nao coloque link para esta pagina em nenhum menu do site.
+
+  Estilo, dados e comportamento estao todos DENTRO deste unico
+  arquivo, de proposito: assim ele pode ser enviado sozinho (WhatsApp,
+  e-mail, pendrive) e aberto com um duplo clique, sem precisar do
+  resto do projeto e sem internet.
+
+  Os textos a revisar estao em window.TEXTOS, mais abaixo. Para
+  acrescentar ou mudar um item, edite lá — a pagina se monta sozinha.
+  ====================================================================
+-->
+<style>
+:root{
+  --linho:#F7F3EE; --nata:#FFFDFB; --areia:#E8DDD2; --areia-clara:#F0E8DF;
+  --champanhe:#C9AD8C; --grafite:#3B332E; --muted:#6E6157; --linha:#E4D9CE;
+  --rose:#B0756E; --rose-forte:#95564F; --verde:#4F6B52; --ambar:#9A6B2F;
+  --f-titulo:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --f-texto:"Jost",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --r:14px; --r-sm:9px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0; background:var(--linho); color:var(--grafite);
+  font-family:var(--f-texto); font-size:1rem; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--f-titulo); font-weight:400; line-height:1.15; margin:0; letter-spacing:.02em}
+a{color:var(--rose-forte)}
+.wrap{max-width:860px; margin:0 auto; padding:0 clamp(1rem,4vw,2rem)}
+
+/* ---------- capa ---------- */
+.capa{padding:clamp(2.5rem,7vw,4.5rem) 0 1rem; text-align:center}
+.capa__olho{font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin:0 0 1rem}
+.capa h1{font-size:clamp(2rem,5vw,3.2rem); text-transform:uppercase}
+.capa h1 em{display:block; font-style:italic; text-transform:none; color:var(--rose-forte); font-size:.8em; margin-top:.12em}
+.capa__lead{color:var(--muted); max-width:62ch; margin:1.5rem auto 0}
+
+/* ---------- instrucoes ---------- */
+.guia{background:var(--nata); border:1px solid var(--linha); border-radius:var(--r); padding:clamp(1.25rem,3vw,2rem); margin:2rem 0}
+.guia h2{font-size:1.4rem; margin-bottom:.75rem}
+.guia ol{margin:0; padding-left:1.4rem; color:var(--muted)}
+.guia li{margin:.45rem 0}
+.guia strong{color:var(--grafite); font-weight:500}
+
+/* ---------- barra fixa ---------- */
+.barra{position:sticky; top:0; z-index:20; background:rgba(247,243,238,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--linha); padding:.7rem 0}
+.barra__in{display:flex; flex-wrap:wrap; gap:.7rem; align-items:center; justify-content:space-between}
+.progresso{flex:1 1 180px; min-width:150px}
+.progresso__trilho{height:7px; background:var(--areia); border-radius:99px; overflow:hidden}
+.progresso__barra{height:100%; width:0; background:var(--rose-forte); border-radius:99px; transition:width .3s ease}
+.progresso__texto{font-size:.78rem; color:var(--muted); margin:.3rem 0 0; letter-spacing:.03em}
+.acoes{display:flex; flex-wrap:wrap; gap:.4rem}
+button{font:inherit; cursor:pointer}
+.bt{border:1px solid var(--linha); background:var(--nata); color:var(--grafite); border-radius:99px; padding:.42rem .95rem; font-size:.82rem; letter-spacing:.03em; transition:background .2s ease,border-color .2s ease}
+.bt:hover{background:var(--areia-clara); border-color:var(--champanhe)}
+.bt--forte{background:var(--rose-forte); border-color:var(--rose-forte); color:var(--nata)}
+.bt--forte:hover{background:var(--rose); border-color:var(--rose)}
+
+/* ---------- filtros ---------- */
+.filtros{display:flex; flex-wrap:wrap; gap:.4rem; margin:1.75rem 0 .5rem; align-items:center}
+.filtros__rot{font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-right:.3rem}
+.filtro{border:1px solid var(--linha); background:transparent; color:var(--muted); border-radius:99px; padding:.34rem .85rem; font-size:.8rem}
+.filtro[aria-pressed="true"]{background:var(--grafite); border-color:var(--grafite); color:var(--nata)}
+
+/* ---------- secoes ---------- */
+.secao{margin:3rem 0 0}
+.secao__cab{display:flex; align-items:baseline; gap:.75rem; flex-wrap:wrap; padding-bottom:.6rem; border-bottom:1px solid var(--linha)}
+.secao h2{font-size:clamp(1.5rem,3vw,2rem); text-transform:uppercase; letter-spacing:.04em}
+.secao__arq{font-size:.74rem; color:var(--muted); font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.secao__conta{font-size:.75rem; color:var(--muted); margin-left:auto}
+.secao__nota{color:var(--muted); font-size:.9rem; margin:.8rem 0 0}
+
+/* ---------- item ---------- */
+.item{background:var(--nata); border:1px solid var(--linha); border-left:3px solid var(--linha); border-radius:var(--r-sm); padding:1.1rem 1.25rem; margin:1rem 0}
+.item[data-decisao="aprovado"]{border-left-color:var(--verde)}
+.item[data-decisao="ajustar"]{border-left-color:var(--ambar)}
+.item[data-decisao="refazer"]{border-left-color:var(--rose-forte)}
+.item__cab{display:flex; gap:.6rem; align-items:baseline; flex-wrap:wrap; margin-bottom:.6rem}
+.item__rot{font-weight:500}
+.item__onde{font-size:.75rem; color:var(--muted)}
+.selo{font-size:.64rem; letter-spacing:.12em; text-transform:uppercase; border-radius:99px; padding:.15rem .55rem; border:1px solid currentColor; white-space:nowrap; color:var(--rose-forte)}
+.item__atual{margin:0 0 .85rem; padding:.7rem .9rem; background:var(--linho); border-radius:var(--r-sm); border:1px dashed var(--linha); font-family:var(--f-titulo); font-size:1.05rem; white-space:pre-wrap}
+.item__nota{margin:0 0 .85rem; font-size:.85rem; color:var(--ambar); padding-left:.7rem; border-left:2px solid var(--champanhe)}
+.escolhas{display:flex; flex-wrap:wrap; gap:.4rem; border:0; padding:0; margin:0 0 .75rem}
+.escolhas legend{font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); padding:0; margin-bottom:.4rem}
+.escolha input{position:absolute; opacity:0; width:0; height:0}
+.escolha span{display:inline-block; border:1px solid var(--linha); border-radius:99px; padding:.38rem .9rem; font-size:.84rem; color:var(--muted); background:var(--linho); transition:all .18s ease}
+.escolha span:hover{border-color:var(--champanhe)}
+.escolha input:focus-visible + span{outline:2px solid var(--rose); outline-offset:2px}
+.escolha input:checked + span{color:var(--nata); border-color:transparent}
+.escolha--ok input:checked + span{background:var(--verde)}
+.escolha--aj input:checked + span{background:var(--ambar)}
+.escolha--re input:checked + span{background:var(--rose-forte)}
+.campo__rot{display:block; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:.3rem}
+textarea{width:100%; min-height:4.5rem; resize:vertical; font:inherit; line-height:1.6; color:var(--grafite); background:var(--linho); border:1px solid var(--linha); border-radius:var(--r-sm); padding:.6rem .8rem}
+textarea:focus{outline:2px solid var(--rose); outline-offset:1px; background:var(--nata)}
+
+/* ---------- avisos, rodape, recado ---------- */
+.aviso{background:#FBF4EE; border:1px solid var(--champanhe); border-radius:var(--r); padding:1rem 1.25rem; margin:2rem 0; font-size:.9rem}
+.aviso strong{font-weight:500}
+.rodape__extra{margin:1.5rem 0 .6rem; font-size:.8rem; letter-spacing:.1em; text-transform:uppercase}
+.acoes--extra{margin-bottom:1.5rem}
+.rodape{margin:4rem 0 3rem; padding-top:1.5rem; border-top:1px solid var(--linha); color:var(--muted); font-size:.85rem}
+.recado{position:fixed; left:50%; bottom:1.5rem; transform:translateX(-50%) translateY(1rem); background:var(--grafite); color:var(--nata); padding:.7rem 1.4rem; border-radius:99px; font-size:.88rem; opacity:0; pointer-events:none; transition:opacity .25s ease,transform .25s ease; z-index:50}
+.recado.ver{opacity:1; transform:translateX(-50%) translateY(0)}
+.vazio{color:var(--muted); font-style:italic; padding:2rem 0}
+@media (prefers-reduced-motion:reduce){*{transition:none !important; animation:none !important}}
+
+/* ---------- impressao ---------- */
+@media print{
+  body{background:#fff}
+  .barra,.filtros,.acoes,.guia,.recado{display:none !important}
+  .item{break-inside:avoid; background:#fff}
+  textarea{border:1px solid #999; min-height:3.2rem}
+}
+</style>
+</head>
+<body>
+
+<header class="capa wrap">
+  <p class="capa__olho">Adeline Mendes Cerimonial</p>
+  <h1>Revisão dos textos <em>do site</em></h1>
+  <p class="capa__lead">
+    Estes são todos os textos escritos para o site. Nada disso está no ar ainda.
+    Leia cada um, diga se pode ficar como está e, quando não puder, escreva do seu jeito.
+  </p>
+</header>
+
+<section class="guia wrap" aria-labelledby="como-usar">
+  <h2 id="como-usar">Como usar esta página</h2>
+  <ol>
+    <li><strong>Para cada texto, escolha uma das três opções:</strong> <em>Pode ficar</em>, <em>Quero mudar</em> ou <em>Está errado</em>.</li>
+    <li><strong>Se escolher mudar ou corrigir, escreva no campo abaixo</strong> como deve ficar. Não precisa ficar bonito — escreva do seu jeito, do jeito que você falaria.</li>
+    <li><strong>Pode fechar e voltar depois.</strong> O que você escrever fica salvo neste computador ou celular automaticamente.</li>
+    <li><strong>No fim, clique em “Copiar tudo”</strong> e cole no WhatsApp do Israel. Ou use “Baixar respostas” e mande o arquivo.</li>
+  </ol>
+  <p class="secao__nota">
+    Os textos marcados com <span class="selo">confirmar</span> são os mais importantes: eles afirmam
+    coisas sobre você e sobre o seu trabalho (números, prazos, histórico, contato). Se algum estiver
+    errado, o site estaria contando uma coisa que não é verdade. Comece por eles — o filtro
+    “Só o essencial” mostra apenas esses.
+  </p>
+</section>
+
+<div class="barra">
+  <div class="barra__in wrap">
+    <div class="progresso">
+      <div class="progresso__trilho" role="progressbar" aria-labelledby="prog-txt" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="prog-bar-wrap">
+        <div class="progresso__barra" id="prog-bar"></div>
+      </div>
+      <p class="progresso__texto" id="prog-txt">0 de 0 textos revisados</p>
+    </div>
+    <div class="acoes">
+      <button type="button" class="bt bt--forte" id="bt-copiar">Copiar tudo</button>
+      <button type="button" class="bt" id="bt-baixar">Baixar respostas</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="filtros" role="group" aria-label="Filtrar textos">
+    <span class="filtros__rot">Mostrar</span>
+    <button type="button" class="filtro" data-filtro="tudo" aria-pressed="true">Tudo</button>
+    <button type="button" class="filtro" data-filtro="essencial" aria-pressed="false">Só o essencial</button>
+    <button type="button" class="filtro" data-filtro="falta" aria-pressed="false">Falta revisar</button>
+    <button type="button" class="filtro" data-filtro="feito" aria-pressed="false">Já revisados</button>
+  </div>
+
+  <div id="lista"></div>
+
+  <p class="aviso" id="aviso-salvar"></p>
+
+  <footer class="rodape">
+    <p>
+      Material interno de trabalho — não é uma página do site. Os textos aqui foram escritos
+      como ponto de partida e só vão ao ar depois da sua aprovação.
+    </p>
+    <p class="rodape__extra">Outras opções, para quando precisar:</p>
+    <div class="acoes acoes--extra">
+      <button type="button" class="bt" id="bt-backup">Salvar backup</button>
+      <button type="button" class="bt" id="bt-restaurar">Abrir backup</button>
+      <button type="button" class="bt" id="bt-imprimir">Imprimir</button>
+      <button type="button" class="bt" id="bt-zerar">Recomeçar</button>
+      <input type="file" id="arq-backup" accept=".json,application/json" hidden>
+    </div>
+    <p id="rod-salvo"></p>
+  </footer>
+</main>
+
+<p class="recado" id="recado" role="status" aria-live="polite"></p>
+
+<script>
+/* =====================================================================
+   OS TEXTOS A REVISAR
+
+   Cada item:
+     id    -> identificador fixo. NAO mude depois que a Adeline comecar
+              a responder: e por ele que a resposta dela fica guardada.
+     rot   -> como o item aparece na pagina
+     onde  -> em que pagina/secao o texto aparece no site
+     atual -> o texto como esta escrito hoje
+     p     -> 1 marca os essenciais (afirmam fatos sobre ela ou o trabalho)
+     nota  -> um aviso para ela, quando precisa
+   ===================================================================== */
+window.TEXTOS = [
+
+{
+  grupo: "O essencial sobre você",
+  arquivo: "aparece em todas as páginas",
+  nota: "Estes são os textos que afirmam fatos. Se algum número ou contato estiver errado, o site inteiro passa a informação errada.",
+  itens: [
+    { id:"e-anos", rot:"Anos de experiência", onde:"Home e Sobre — faixa de números", p:1,
+      nota:"Confira o número. Ele aparece também em vários textos como “mais de doze anos”.",
+      atual:`+12
+anos de estrada` },
+    { id:"e-eventos", rot:"Quantidade de eventos realizados", onde:"Home e Sobre — faixa de números", p:1,
+      nota:"Este número foi estimado por nós. Se você não tiver certeza, é melhor tirar do site do que arredondar para cima.",
+      atual:`+300
+eventos realizados` },
+    { id:"e-por-fds", rot:"Eventos por fim de semana", onde:"Home e Sobre — faixa de números", p:1,
+      nota:"Isso é uma promessa ao cliente. Só pode ficar se for verdade sempre.",
+      atual:`2
+eventos por fim de semana, no máximo` },
+    { id:"e-presenca", rot:"Presença no dia do evento", onde:"Home e Sobre — faixa de números", p:1,
+      nota:"Também é uma promessa. Vale manter?",
+      atual:`100%
+presença no dia do evento` },
+    { id:"e-whats", rot:"WhatsApp", onde:"rodapé, contato e todos os botões", p:1,
+      nota:"É este o número que recebe os pedidos de orçamento?",
+      atual:"(85) 99820-0767" },
+    { id:"e-insta", rot:"Instagram", onde:"rodapé e galeria", p:1,
+      atual:"@adelinemendescerimonial" },
+    { id:"e-regiao", rot:"Região de atendimento", onde:"rodapé e página de contato", p:1,
+      nota:"Define quem te procura. Atende mesmo toda a região metropolitana de Fortaleza?",
+      atual:"Cerimonial e assessoria de eventos em Cascavel e região metropolitana de Fortaleza, no Ceará." },
+    { id:"e-marca", rot:"Nome da marca", onde:"topo e rodapé de todas as páginas", p:1,
+      atual:`Adeline Mendes · Cerimonial
+Adeline Mendes Cerimonial` }
+  ]
+},
+
+{
+  grupo: "Carrossel de momentos",
+  arquivo: "dados/momentos.js",
+  nota: "São os seis eventos que passam na home e na galeria. TODOS foram inventados para dar forma ao layout — nenhum aconteceu. Troque por eventos reais seus. Se for citar nome de noivos ou de criança, precisa de autorização deles.",
+  itens: [
+    { id:"m1", rot:"Momento 1", onde:"Home e Galeria — carrossel", p:1,
+      atual:`Cerimônia ao ar livre
+Casamento · Cascavel, Ceará
+O arco montado antes do pôr do sol, o cortejo ensaiado na véspera e a noiva entrando no horário combinado. Ninguém percebeu a contagem regressiva nos bastidores.` },
+    { id:"m2", rot:"Momento 2", onde:"Home e Galeria — carrossel", p:1,
+      atual:`A recepção posta
+Casamento · região metropolitana de Fortaleza
+Mesas conferidas uma a uma, lounge montado e buffet alinhado com o cronograma. Os convidados sentaram e o serviço já estava de pé.` },
+    { id:"m3", rot:"Momento 3", onde:"Home e Galeria — carrossel", p:1,
+      atual:`Papelaria e lugar marcado
+Casamento · detalhes da mesa
+Menu, nome de cada convidado e guardanapo posicionados na noite anterior, para que a manhã do evento fosse só de ajuste fino.` },
+    { id:"m4", rot:"Momento 4", onde:"Home e Galeria — carrossel", p:1,
+      atual:`A pista depois do brinde
+Casamento · primeira dança
+Luz quente, música na deixa certa e os noivos entrando na pista sem precisar olhar para o relógio nenhuma vez.` },
+    { id:"m5", rot:"Momento 5", onde:"Home e Galeria — carrossel", p:1,
+      atual:`Festa de aniversário
+Aniversário infantil · 5 anos
+Painel, mesa do bolo e o parabéns no horário que a família pediu — antes do cansaço chegar e com todo mundo ainda por perto.` },
+    { id:"m6", rot:"Momento 6", onde:"Home e Galeria — carrossel", p:1,
+      atual:`Recreação e despedida
+Aniversário infantil · encerramento
+Brincadeira conduzida no jardim enquanto os adultos comiam em paz, e lembrancinhas entregues na saída, uma para cada criança.` }
+  ]
+},
+
+{
+  grupo: "Depoimentos",
+  arquivo: "dados/depoimentos.js",
+  nota: "Os três depoimentos abaixo são EXEMPLOS escritos por nós. Nenhum cliente real disse isso. Publicar assim inventaria clientes que não existem. Substitua por depoimentos de verdade, com autorização de quem escreveu — ou diga para tirarmos a seção até você ter os reais.",
+  itens: [
+    { id:"d1", rot:"Depoimento 1", onde:"Home — O que dizem depois da festa", p:1,
+      atual:`A gente chegou no dia do casamento sem saber de nada do que estava acontecendo nos bastidores, e era exatamente isso que a gente queria. Tudo aconteceu na hora certa e ninguém precisou nos procurar para resolver nada.
+— Nome da cliente · Casamento · mês de ano` },
+    { id:"d2", rot:"Depoimento 2", onde:"Home — O que dizem depois da festa", p:1,
+      atual:`Eu já tinha contratado tudo e só precisava de alguém no comando no dia. Valeu cada centavo: a festa fluiu, os fornecedores sabiam a hora de cada coisa e eu consegui ficar com os convidados.
+— Nome do cliente · Assessoria do dia · mês de ano` },
+    { id:"d3", rot:"Depoimento 3", onde:"Home — O que dizem depois da festa", p:1,
+      atual:`A festa da minha filha teve o cronograma respeitado do começo ao fim, inclusive o horário do bolo, que era a minha maior preocupação. Ninguém ficou cansado e a criança aproveitou a festa inteira.
+— Nome da cliente · Aniversário infantil · mês de ano` }
+  ]
+},
+
+{
+  grupo: "Página inicial",
+  arquivo: "index.html",
+  itens: [
+    { id:"h-title", rot:"Título da aba do navegador", onde:"Home — aparece na aba e no Google",
+      atual:"Adeline Mendes Cerimonial — Assessoria de casamentos e festas em Cascavel, CE" },
+    { id:"h-desc", rot:"Descrição que aparece no Google", onde:"Home — resultado de busca", p:1,
+      nota:"É o primeiro texto que alguém lê sobre você no Google. Repare que ele afirma “mais de 12 anos”.",
+      atual:"Cerimonial e assessoria de eventos em Cascavel e região, no Ceará. Casamentos e aniversários infantis conduzidos do planejamento ao último convidado, com mais de 12 anos de experiência." },
+    { id:"h-hero", rot:"Frase principal da home", onde:"Home — primeira tela",
+      nota:"É a maior frase do site, a primeira coisa que a pessoa lê.",
+      atual:`Cerimonial & assessoria de eventos
+Cada detalhe no lugar certo` },
+    { id:"h-lead", rot:"Texto de abertura", onde:"Home — primeira tela",
+      atual:"Da primeira reunião ao último convidado, eu conduzo o seu evento com protocolo, calma e olho atento para aquilo que ninguém lembrou de perguntar. Você só precisa estar presente." },
+    { id:"h-dif", rot:"As quatro promessas do topo", onde:"Home — logo abaixo da primeira tela", p:1,
+      nota:"São quatro promessas de serviço. Se alguma não for sempre verdade, me diga.",
+      atual:`Assessoria completa — Do planejamento inicial à conclusão do evento.
+Equipe no dia — Gente em campo cuidando do que você não vê.
+Roteiro minuto a minuto — Cada etapa com horário, responsável e plano B.
+Atendimento próximo — Poucos eventos por data, atenção de verdade.` },
+    { id:"h-sobre-tit", rot:"Título da seção sobre você", onde:"Home — seção Sobre mim",
+      atual:`Sobre mim
+Quem cuida do seu momento` },
+    { id:"h-sobre-p1", rot:"Sua apresentação (1º parágrafo)", onde:"Home — seção Sobre mim", p:1,
+      nota:"Esse texto fala por você. Reescreva com as suas palavras se não for assim que você se apresenta.",
+      atual:"Sou Adeline Mendes e há mais de doze anos organizo casamentos e festas em Cascavel e região. Nesse tempo aprendi que o melhor elogio que um cerimonial pode receber é o silêncio: quando ninguém percebe o trabalho por trás, é porque tudo aconteceu na hora certa." },
+    { id:"h-sobre-p2", rot:"Sua apresentação (2º parágrafo)", onde:"Home — seção Sobre mim", p:1,
+      atual:"Meu trabalho começa muito antes do dia do evento. Ajudo a escolher fornecedores, monto o roteiro, ensaio a entrada, alinho a equipe e fico com os imprevistos para que eles não cheguem até você. No dia, minha função é simples de dizer e difícil de fazer: garantir que a sua única preocupação seja aproveitar." },
+    { id:"h-serv-tit", rot:"Título da seção de serviços", onde:"Home — O que eu faço",
+      atual:`O que eu faço
+Cada festa pede um cuidado diferente
+Três formas de trabalhar juntos, sempre com o mesmo padrão de organização e presença.` },
+    { id:"h-serv-1", rot:"Serviço: Casamento", onde:"Home — cartão 01", p:1,
+      nota:"Confira se é exatamente isso que está incluso quando alguém contrata casamento.",
+      atual:"Cerimônia e recepção conduzidas do começo ao fim: ordem de entrada, protocolo, fornecedores, ensaio e coordenação no dia." },
+    { id:"h-serv-2", rot:"Serviço: Aniversário infantil", onde:"Home — cartão 02", p:1,
+      atual:"Festa organizada no ritmo da criança: cronograma que respeita o sono e a fome, recreação alinhada e pais livres para curtir." },
+    { id:"h-serv-3", rot:"Serviço: Assessoria do dia", onde:"Home — cartão 03", p:1,
+      nota:"Você oferece esse serviço separado? Ele aparece como uma das três formas de contratar.",
+      atual:"Para quem já organizou tudo e quer alguém no comando na hora. Assumo o roteiro, a equipe e os imprevistos do dia do evento." },
+    { id:"h-como-tit", rot:"Título de como funciona", onde:"Home — Como funciona",
+      atual:`Como funciona
+Do primeiro café ao último convidado` },
+    { id:"h-etapas", rot:"As quatro etapas do seu trabalho", onde:"Home — linha do tempo", p:1,
+      nota:"É o seu processo de trabalho descrito para o cliente. Confira se é assim que você trabalha de verdade.",
+      atual:`01 Conversa inicial — A gente senta, você conta o que imagina e eu explico o que é possível dentro do seu orçamento e da sua data.
+02 Planejamento — Escolha e contato com fornecedores, montagem do roteiro, controle de prazos e acompanhamento das decisões.
+03 Ensaio e alinhamento — Ensaio da entrada, visita ao espaço e reunião final com a equipe para que todo mundo saiba o seu papel.
+04 Dia do evento — Chego cedo, recebo os fornecedores, conduzo o roteiro e resolvo o que aparecer, sem passar o problema para você.` },
+    { id:"h-momentos-tit", rot:"Título do carrossel", onde:"Home e Galeria",
+      atual:`Registros
+Momentos que já aconteceram` },
+    { id:"h-checklist", rot:"Convite para o checklist", onde:"Home — Presente para você",
+      atual:`Presente para você
+O checklist do seu evento
+A lista que eu uso para organizar cada casamento e cada festa, dividida por etapa: o que decidir um ano antes, o que fechar no último mês e o que conferir no dia. Marque as tarefas no próprio site e acompanhe o progresso — fica salvo no seu navegador.` },
+    { id:"h-depo-tit", rot:"Título dos depoimentos", onde:"Home — Depoimentos",
+      atual:`Depoimentos
+O que dizem depois da festa` },
+    { id:"h-cta", rot:"Convite final da home", onde:"Home — última seção",
+      atual:`Vamos conversar
+Me conta o que você está planejando
+A primeira conversa não custa nada e já serve para você entender o que precisa ser decidido — e em que ordem.` }
+  ]
+},
+
+{
+  grupo: "Página de casamento",
+  arquivo: "casamento.html",
+  nota: "Os horários do roteiro e as regras de protocolo foram escritos a partir do que é mais comum na região. Você é quem sabe — corrija o que não é assim que você faz.",
+  itens: [
+    { id:"c-title", rot:"Título da aba e do Google", onde:"Casamento",
+      atual:`Casamento — Adeline Mendes Cerimonial | Cascavel, CE
+Assessoria e cerimonial de casamento em Cascavel e região: roteiro do dia, ordem de entrada, protocolo, fornecedores, ensaio e coordenação da cerimônia e da festa.` },
+    { id:"c-hero", rot:"Frase principal", onde:"Casamento — primeira tela",
+      atual:`Casamento
+O dia certo na hora certa` },
+    { id:"c-lead", rot:"Texto de abertura", onde:"Casamento — primeira tela",
+      atual:"Um casamento tem dezenas de pessoas cumprindo horários que só existem na cabeça de alguém. Meu trabalho é tirar esses horários da cabeça, colocá-los no papel e fazer com que aconteçam sem que você precise olhar para o relógio." },
+    { id:"c-incluso-tit", rot:"Título do que está incluso", onde:"Casamento — O que está incluso",
+      nota:"Repare na última frase: ela promete que o pacote é montado caso a caso.",
+      atual:`O que está incluso
+Tudo que eu assumo no seu casamento
+A assessoria completa começa na escolha dos fornecedores e termina quando o último convidado vai embora. Este é o escopo padrão; o pacote final é montado conforme o tamanho e o formato da sua festa.` },
+    { id:"c-incluso-lista", rot:"Lista do que está incluso (8 itens)", onde:"Casamento — O que está incluso", p:1,
+      nota:"ESTE É O TEXTO MAIS IMPORTANTE DA PÁGINA: é o que o cliente entende que está comprando. Tire o que você não faz e acrescente o que faltou.",
+      atual:`Reuniões de planejamento e acompanhamento das decisões
+Indicação, contato e alinhamento com fornecedores
+Visita técnica ao espaço da cerimônia e da recepção
+Montagem do roteiro do dia, com horários e responsáveis
+Ensaio da cerimônia com padrinhos, pajens e famílias
+Coordenação da montagem no dia e conferência de tudo
+Condução da cerimônia e da recepção do início ao fim
+Kit emergência e resolução de imprevistos na hora` },
+    { id:"c-roteiro-tit", rot:"Abertura do roteiro do dia", onde:"Casamento — Roteiro típico",
+      nota:"Afirma que cerimônia às 19h é o formato mais comum na região. É mesmo?",
+      atual:`Roteiro típico
+Como costuma ser o dia do casamento
+Os horários abaixo são um exemplo de cerimônia às 19h, que é o formato mais comum por aqui. O seu roteiro é montado sob medida, mas a lógica e a ordem das etapas costumam ser estas.` },
+    { id:"c-rot-manha", rot:"Roteiro: Manhã — montagem", onde:"Casamento — roteiro",
+      atual:`Manhã · Montagem e conferência
+Recebo decoração, som, iluminação e buffet no espaço. Confiro se o que chegou é o que foi contratado, marco o corredor e defino a posição de cada elemento com os fornecedores.` },
+    { id:"c-rot-15", rot:"Roteiro: 15h — preparação dos noivos", onde:"Casamento — roteiro",
+      nota:"Você acompanha mesmo a maquiagem e o cabelo?",
+      atual:`15h · Preparação dos noivos
+Acompanho maquiagem e cabelo para garantir o horário, organizo o que vai para o espaço e mantenho contato com as duas famílias para alinhar a chegada.` },
+    { id:"c-rot-18", rot:"Roteiro: 18h — chegada dos convidados", onde:"Casamento — roteiro",
+      atual:`18h · Chegada dos convidados
+Equipe posicionada na recepção, som ambiente rodando, lugares reservados sinalizados e padrinhos orientados sobre onde ficar e quando entrar.` },
+    { id:"c-rot-19", rot:"Roteiro: 19h — cerimônia", onde:"Casamento — roteiro",
+      atual:`19h · Cerimônia
+Entradas na ordem combinada, com intervalo certo entre cada uma. Cuido das deixas musicais, do posicionamento no altar e do tempo de cada momento.` },
+    { id:"c-rot-20", rot:"Roteiro: 20h — recepção e cumprimentos", onde:"Casamento — roteiro",
+      atual:`20h · Recepção e cumprimentos
+Saída dos noivos, sessão de fotos com as famílias e abertura do bar e da entrada. É a hora em que o atraso acontece — por isso ela tem um tempo definido.` },
+    { id:"c-rot-2130", rot:"Roteiro: 21h30 — jantar, valsa e pista", onde:"Casamento — roteiro",
+      atual:`21h30 · Jantar, valsa e pista
+Serviço do jantar, primeira dança, valsa com os pais, corte do bolo e abertura da pista, cada um com a sua deixa para a banda ou o DJ.` },
+    { id:"c-rot-fim", rot:"Roteiro: encerramento", onde:"Casamento — roteiro",
+      nota:"Promete que você cuida da devolução de itens alugados e do fechamento com o espaço.",
+      atual:`Fim da festa · Encerramento
+Saída dos noivos, conferência do que fica e do que vai, devolução de itens alugados e fechamento com o espaço. Você vai embora sem carregar nada.` }
+  ]
+},
+
+{
+  grupo: "Casamento — protocolo e etiqueta",
+  arquivo: "casamento.html",
+  nota: "Estas são as perguntas que abrem quando o visitante clica. Aqui você aparece como quem domina o assunto, então qualquer regra errada pesa. Corrija o que não é assim que se faz por aqui.",
+  itens: [
+    { id:"c-prot-tit", rot:"Abertura do protocolo", onde:"Casamento — Protocolo e etiqueta",
+      atual:`Protocolo e etiqueta
+As dúvidas que sempre aparecem
+Nenhuma dessas regras é lei. Elas são a forma tradicional de fazer, e servem de ponto de partida: conhecendo a tradição, fica muito mais fácil decidir o que manter e o que adaptar ao seu casamento.` },
+    { id:"c-prot-ordem", rot:"Ordem de entrada na cerimônia", onde:"Casamento — pergunta 1",
+      atual:`Na versão tradicional, entram nesta ordem: celebrante, noivo acompanhado da mãe, padrinhos e madrinhas (em duplas ou já posicionados no altar), pajens e daminhas, e por último a noiva acompanhada do pai.
+
+Em cerimônias religiosas com missa, os padrinhos costumam já estar posicionados antes do início. Em cerimônias ao ar livre e civis, é comum simplificar: entram os padrinhos, depois o noivo e, por fim, a noiva. O que não muda é o intervalo entre as entradas — é ele que evita fila no corredor e dá tempo do fotógrafo trabalhar.` },
+    { id:"c-prot-altar", rot:"Posicionamento no altar", onde:"Casamento — pergunta 2",
+      atual:`Olhando do ponto de vista dos convidados, a noiva fica à esquerda e o noivo à direita. A família da noiva ocupa as primeiras fileiras da esquerda e a do noivo, da direita.
+
+Padrinhos e madrinhas ficam em semicírculo atrás dos noivos ou em pé nas laterais do altar, conforme o espaço. Os pajens e daminhas sentam com a família logo após a entrada — crianças em pé durante a cerimônia inteira raramente dá certo.` },
+    { id:"c-prot-civil", rot:"Cerimônia religiosa e civil", onde:"Casamento — pergunta 3",
+      atual:`O casamento civil é o que tem validade legal. Ele pode acontecer no cartório, em dia anterior, ou no próprio espaço da festa, com o juiz de paz se deslocando até lá — nesse caso a assinatura vira parte da cerimônia.
+
+A cerimônia religiosa segue o rito da sua igreja, e o tempo dela varia bastante: uma celebração católica com missa costuma passar de uma hora, enquanto uma cerimônia evangélica ou ecumênica fica entre trinta e quarenta e cinco minutos. Esse tempo muda o roteiro inteiro da festa, então é uma das primeiras coisas que eu confirmo com o celebrante.` },
+    { id:"c-prot-votos", rot:"Votos, leituras e falas", onde:"Casamento — pergunta 4",
+      atual:`Se houver votos escritos pelos noivos, o combinado é deixá-los impressos com o cerimonial: papel na mão treme menos que celular, e não existe risco de a tela apagar na hora.
+
+Leituras de familiares e amigos funcionam melhor com até três participações curtas. Cada fala extra empurra o restante do roteiro, e é quase sempre aqui que a cerimônia estoura o horário previsto.` },
+    { id:"c-prot-trajes", rot:"Trajes e combinado com os padrinhos", onde:"Casamento — pergunta 5",
+      atual:`O traje dos noivos define o dos convidados: quanto mais formal o casamento, mais cedo isso precisa estar no convite. Para os padrinhos, o padrão é alinhar a cor do terno e do vestido com antecedência e mandar uma referência visual para o grupo — descrição em texto gera interpretações muito diferentes.
+
+Uma regra prática que evita constrangimento: o convite deve dizer o traje esperado de forma direta (esporte fino, social, black tie), e não deixar que o convidado adivinhe pelo horário.` },
+    { id:"c-prot-saida", rot:"Ordem de saída e cumprimentos", onde:"Casamento — pergunta 6",
+      atual:`Saem primeiro os noivos, depois os pais, e em seguida padrinhos e madrinhas. Os convidados acompanham na sequência das fileiras, da frente para o fundo.
+
+Os cumprimentos podem acontecer na saída da cerimônia ou já na recepção, com os noivos passando pelas mesas. A segunda opção costuma render fotos melhores e evita a fila que trava o início da festa — mas exige que alguém controle o tempo em cada mesa. Esse alguém sou eu.` },
+    { id:"c-elem-tit", rot:"Abertura dos elementos visuais", onde:"Casamento — Elementos visuais",
+      atual:`Elementos visuais
+As peças que montam o visual do casamento
+Cada uma dessas frentes tem fornecedor, prazo e custo próprios. Entender o papel de cada uma ajuda a decidir onde investir mais e onde dá para economizar sem que ninguém perceba.` },
+    { id:"c-elementos", rot:"Os seis elementos visuais", onde:"Casamento — seis cartões",
+      atual:`Cerimônia e altar — Arco ou fundo, corredor, cadeiras e o ponto exato onde os noivos ficam. É o cenário da foto que vai para a parede da sala.
+Mesas e posta — Formato das mesas, louça, taças, guardanapo e o mapa de lugares. Define o quanto os convidados conversam entre si.
+Flores e folhagem — Buquê, arco, arranjos das mesas e detalhes de corredor. O item que mais varia de preço conforme a estação.
+Iluminação — Luz quente na cerimônia, luz cênica na pista e luz de serviço nos bastidores. É o que mais transforma um espaço simples.
+Papelaria — Convite, save the date, menu, lugar marcado e placas. É o primeiro contato do convidado com o tom do casamento.
+Trajes — Vestido, terno, sapatos, véu e acessórios, com prova marcada em tempo de ajustar. Inclui o traje dos padrinhos.` },
+    { id:"c-estilos", rot:"Os seis estilos de casamento", onde:"Casamento — Variações de estilo",
+      nota:"São os estilos que você oferece como ponto de partida. Falta algum que você faz muito? Sobra algum que você não faz?",
+      atual:`Variações de estilo · Seis caminhos para o mesmo sim
+O estilo escolhido conduz paleta, flores, papelaria, traje e até o horário. Serve como atalho: em vez de decidir item por item, você decide o conjunto.
+
+Clássico — Velas, branco e dourado
+Rústico — Madeira, linho e luz quente
+Minimalista — Poucas peças, muito espaço
+Boho — Pampas, tapetes e macramê
+Pé na areia — Fim de tarde e tecido leve
+Tropical brasileiro — Folhagem, frutas e cor` },
+    { id:"c-cta", rot:"Convite final da página", onde:"Casamento — última seção",
+      atual:`Próximo passo
+Já tem data ou ainda está decidindo?
+Nos dois casos dá para conversar. Se a data já está marcada, eu verifico a disponibilidade; se não, ajudo a escolher considerando espaço, clima e orçamento.` }
+  ]
+},
+
+{
+  grupo: "Página de aniversário infantil",
+  arquivo: "aniversario-infantil.html",
+  itens: [
+    { id:"i-title", rot:"Título da aba e do Google", onde:"Infantil",
+      atual:`Aniversário infantil — Adeline Mendes Cerimonial | Cascavel, CE
+Cerimonial e assessoria de aniversário infantil em Cascavel e região: cronograma no ritmo da criança, recreação alinhada, fornecedores e pais livres para aproveitar a festa.` },
+    { id:"i-hero", rot:"Frase principal", onde:"Infantil — primeira tela",
+      atual:`Aniversário infantil
+Festa no ritmo da criança` },
+    { id:"i-lead", rot:"Texto de abertura", onde:"Infantil — primeira tela",
+      atual:"Criança não espera: tem hora de fome, de sono e de cansaço. Eu monto a festa em volta desse relógio e cuido de fornecedores, recreação e convidados, para que você esteja ao lado dela quando as velas acenderem." },
+    { id:"i-incluso-tit", rot:"Título do que está incluso", onde:"Infantil — O que está incluso", p:1,
+      atual:`O que está incluso
+Tudo que eu assumo na festa
+A assessoria começa na escolha do tema e termina quando a última lembrancinha sai pela porta. Este é o escopo padrão; o pacote final acompanha o tamanho e o formato da festa.` },
+    { id:"i-incluso-lista", rot:"Lista do que está incluso (8 itens)", onde:"Infantil — O que está incluso", p:1,
+      nota:"É o que o cliente entende que está comprando. Tire o que você não faz e acrescente o que faltou.",
+      atual:`Reunião de planejamento com a família e definição do tema
+Indicação e alinhamento com buffet, decoração, bolo e recreação
+Cronograma pensado no horário de sono e alimentação da criança
+Visita técnica ao espaço e conferência da montagem
+Recepção dos convidados e controle da lista na entrada
+Condução do parabéns com deixa para foto, vídeo e música
+Atenção à segurança: tomadas, piscina, escadas e saídas
+Controle das lembrancinhas, dos presentes e do que volta para casa` },
+    { id:"i-crono-tit", rot:"Abertura do cronograma", onde:"Infantil — Cronograma típico",
+      nota:"Afirma que festa das 16h às 20h é o formato mais pedido. Confere?",
+      atual:`Cronograma típico
+Como costuma ser a tarde da festa
+Exemplo de festa das 16h às 20h, o formato mais pedido para crianças pequenas. O parabéns é o ponto fixo do dia: tudo se organiza para que ele aconteça antes do cansaço.` },
+    { id:"i-cro-manha", rot:"Cronograma: Manhã — montagem", onde:"Infantil — cronograma",
+      atual:`Manhã · Montagem e conferência
+Recebo decoração, mesa do bolo, brinquedos e som. Confiro o que foi contratado e reviso a segurança de cada área: tomadas, cantos, piscina e acesso à rua.` },
+    { id:"i-cro-15", rot:"Cronograma: 15h — chegada da família", onde:"Infantil — cronograma",
+      atual:`15h · Chegada da família
+O aniversariante chega descansado e alimentado. É a hora das fotos em família com a decoração intacta, antes de os convidados chegarem.` },
+    { id:"i-cro-16", rot:"Cronograma: 16h — recepção", onde:"Infantil — cronograma",
+      atual:`16h · Recepção dos convidados
+Equipe na porta, lista conferida, presentes guardados em local separado e crianças encaminhadas direto para a recreação.` },
+    { id:"i-cro-1630", rot:"Cronograma: 16h30 — recreação", onde:"Infantil — cronograma",
+      atual:`16h30 · Recreação e brinquedos
+Atividades por faixa etária, monitores alinhados com o cronograma e salgados circulando para as crianças não ficarem com fome.` },
+    { id:"i-cro-18", rot:"Cronograma: 18h — parabéns", onde:"Infantil — cronograma",
+      nota:"Afirma que parabéns antes das 18h30 é a melhor garantia contra choro. É a sua regra?",
+      atual:`18h · Parabéns
+Aviso os pais com antecedência, chamo as crianças para perto da mesa e dou as deixas para foto, vídeo e música. Parabéns antes das 18h30 é a melhor garantia contra choro.` },
+    { id:"i-cro-1830", rot:"Cronograma: 18h30 — bolo e calmaria", onde:"Infantil — cronograma",
+      atual:`18h30 · Bolo, doces e calmaria
+Corte e distribuição do bolo. A recreação volta com atividades mais tranquilas, que ajudam a baixar a energia antes da saída.` },
+    { id:"i-cro-20", rot:"Cronograma: 20h — encerramento", onde:"Infantil — cronograma",
+      atual:`20h · Encerramento
+Entrega das lembrancinhas na saída, conferência dos presentes e do que é da família. Vocês saem com a criança no colo, não com caixas.` },
+    { id:"i-idades", rot:"O que muda com a idade", onde:"Infantil — Cada idade, uma festa", p:1,
+      nota:"São recomendações profissionais suas. Confira duração, horários e o que você diz sobre cada faixa.",
+      atual:`01 Primeiro aninho — Uma festa para a família. Curta, de até três horas, marcada depois da soneca e com foco nas fotos. Sempre com um espaço reservado para trocar e amamentar.
+02 De 2 a 6 anos — A fase dos personagens e da recreação. Brinquedos por faixa etária, monitores em número suficiente e parabéns cedo, antes do cansaço bater.
+03 De 7 a 12 anos — Eles querem opinar. Temas mais pessoais, atividades em grupo como oficinas, gincanas e karaokê, e uma festa que seja deles, não dos adultos.` },
+    { id:"i-temas", rot:"Os seis temas de festa", onde:"Infantil — Temas",
+      nota:"Falta algum tema que você faz muito?",
+      atual:`Temas · Ideias que viram festa
+O tema conduz decoração, bolo, convite e lembrancinha. Personagem licenciado também funciona; a diferença está em como ele entra na festa.
+
+Jardim encantado — Flores, borboletas e tons suaves
+Safári — Folhagens, palha e bichos
+Circo vintage — Listras, pipoca e picadeiro
+Fundo do mar — Azuis, conchas e ondas
+Confeitaria — Doces, tons pastel e avental
+Espaço sideral — Planetas, estrelas e foguetes` },
+    { id:"i-cta", rot:"Convite final da página", onde:"Infantil — última seção",
+      atual:`Próximo passo
+Vamos pensar na festa juntos?
+Me conta a idade, o tema que está na cabeça e a data. Com isso eu já consigo dizer o que é possível e por onde começar.` }
+  ]
+},
+
+{
+  grupo: "Infantil — dúvidas dos pais",
+  arquivo: "aniversario-infantil.html",
+  nota: "Todas estas respostas dão prazos, números e compromissos em seu nome. São as que mais precisam da sua palavra.",
+  itens: [
+    { id:"i-faq-antec", rot:"Com quanta antecedência contratar?", onde:"Infantil — pergunta 1", p:1,
+      nota:"Diz de três a seis meses, e mais em julho e dezembro. É o seu prazo?",
+      atual:"O ideal é entre três e seis meses antes. Festas em julho e dezembro, ou em fins de semana perto de datas comemorativas, pedem mais antecedência: os bons espaços e fornecedores são os primeiros a fechar a agenda." },
+    { id:"i-faq-duracao", rot:"Quanto tempo a festa deve durar?", onde:"Infantil — pergunta 2",
+      atual:"Entre três e quatro horas é o tempo em que as crianças aproveitam sem se esgotar. Para o primeiro aninho, três horas bastam. Mais do que isso e a festa termina com o aniversariante dormindo no colo antes do parabéns." },
+    { id:"i-faq-horario", rot:"Qual é o melhor horário?", onde:"Infantil — pergunta 3",
+      atual:"Para crianças pequenas, a tarde, logo depois da soneca. Para as maiores, a festa pode começar mais tarde e avançar um pouco pela noite. O que eu sempre confirmo com a família é a rotina da criança, porque é ela que define o cronograma." },
+    { id:"i-faq-monitores", rot:"Quantos monitores de recreação?", onde:"Infantil — pergunta 4", p:1,
+      nota:"Diz um monitor para cada oito a dez crianças. É a conta que você usa?",
+      atual:"Uma boa referência é um monitor para cada oito a dez crianças a partir dos três anos. Os menores de três ficam melhor acompanhados por um adulto da família, com a recreação como apoio." },
+    { id:"i-faq-local", rot:"Atende festa em casa ou no condomínio?", onde:"Infantil — pergunta 5", p:1,
+      nota:"A resposta é “sim”. Confirma?",
+      atual:"Sim. Nesses casos a visita técnica é ainda mais importante: verifico energia, espaço para os brinquedos, regras do condomínio, horário de silêncio e o caminho dos fornecedores até o local." },
+    { id:"i-faq-chuva", rot:"E se chover?", onde:"Infantil — pergunta 6",
+      atual:"O plano B é definido na visita técnica, não no dia. Em festa ao ar livre, já combinamos com o espaço e a decoração para onde tudo vai caso o tempo vire, e quanto tempo leva essa troca." }
+  ]
+},
+
+{
+  grupo: "Página Sobre",
+  arquivo: "sobre.html",
+  nota: "É a sua história contada por nós. Nenhuma linha daqui saiu de uma entrevista com você — foi escrita a partir do que imaginamos sobre a sua trajetória. Leia com atenção e corrija sem medo: aqui, errar é inventar um passado que não é o seu.",
+  itens: [
+    { id:"s-title", rot:"Título da aba e do Google", onde:"Sobre",
+      atual:`Sobre — Adeline Mendes Cerimonial | Cascavel, CE
+Conheça Adeline Mendes, cerimonialista em Cascavel, CE: mais de doze anos conduzindo casamentos e festas com protocolo, calma e atenção aos detalhes.` },
+    { id:"s-hero", rot:"Frase principal", onde:"Sobre — primeira tela",
+      atual:`Sobre
+Prazer, Adeline` },
+    { id:"s-lead", rot:"Texto de abertura", onde:"Sobre — primeira tela", p:1,
+      atual:"Cerimonialista em Cascavel, no Ceará. Há mais de doze anos eu cuido para que casamentos e festas aconteçam do jeito que foram sonhados, e no horário em que foram combinados." },
+    { id:"s-hist-1", rot:"Sua história: como começou", onde:"Sobre — Minha história", p:1,
+      nota:"INVENTADO. Dizemos que você começou ajudando em festas de amigos e da família. Foi assim que começou?",
+      atual:"Comecei como muita cerimonialista começa: ajudando nas festas de amigos e da família, sempre a pessoa que sabia onde estava a caixa das alianças e quem entrava depois de quem. Com o tempo, o que era favor virou ofício, e o ofício virou profissão." },
+    { id:"s-hist-2", rot:"Sua história: onde já trabalhou", onde:"Sobre — Minha história", p:1,
+      nota:"INVENTADO. Diz que você passou por salões, igrejas, sítios, praias e quintais. Confere?",
+      atual:"Nesses mais de doze anos passei por salões, igrejas, sítios, praias e quintais de Cascavel e região. Aprendi a ler um espaço antes da montagem, a conversar com cada fornecedor na língua dele e a perceber um atraso antes que ele aconteça." },
+    { id:"s-hist-3", rot:"Sua história: poucos eventos por data", onde:"Sobre — Minha história", p:1,
+      atual:"Hoje trabalho com poucos eventos por data, e isso é de propósito. Cerimonial é presença: não dá para estar inteira em dois lugares ao mesmo tempo, e quem me contrata merece a minha atenção do começo ao fim." },
+    { id:"s-hist-4", rot:"Sua história: o que te move", onde:"Sobre — Minha história", p:1,
+      atual:"O que me move continua o mesmo do primeiro evento: ver a família inteira aproveitando a festa, sem ninguém olhando para o relógio, enquanto eu cuido para que o relógio esteja certo." },
+    { id:"s-citacao", rot:"A frase assinada com o seu nome", onde:"Sobre — citação em destaque", p:1,
+      nota:"Esta frase aparece entre aspas, assinada “Adeline Mendes”, como se fosse sua. Só pode ficar se você assinaria embaixo.",
+      atual:`O melhor elogio que um cerimonial pode receber é o silêncio: quando ninguém percebe o trabalho, é porque tudo aconteceu na hora certa.
+— Adeline Mendes` },
+    { id:"s-valores", rot:"Seus quatro princípios", onde:"Sobre — O que eu acredito", p:1,
+      nota:"São os valores que o site diz que você defende. Mude as palavras para as suas.",
+      atual:`I. Presença inteira — Poucos eventos por data. No dia da sua festa, você tem a minha atenção do começo ao fim, sem dividir com outro compromisso.
+II. Tudo no papel — Roteiro com horário, responsável e plano B. O que está escrito não depende da memória de ninguém no meio da festa.
+III. Calma que contagia — Imprevisto acontece em toda festa. O meu trabalho é resolver antes que ele chegue até você, e sem que os convidados percebam.
+IV. O seu jeito primeiro — Tradição é ponto de partida, não regra. O evento precisa ter a cara de quem está celebrando, não a minha.` },
+    { id:"s-kit", rot:"O kit de emergência", onde:"Sobre — Nos bastidores", p:1,
+      nota:"Diz o que você leva em todo evento. Tire o que não leva e acrescente o que falta.",
+      atual:`Ele vai a todo evento, grande ou pequeno. Quase nunca é aberto inteiro, mas quando uma alça arrebenta cinco minutos antes da entrada, é ele que salva a foto.
+
+Agulha, linha e alfinetes nas cores dos trajes
+Fita dupla-face e cola para barra, alça e salto
+Analgésico, curativos e soro fisiológico
+Lenços, grampos e spray fixador
+Carregador portátil e o roteiro impresso
+Sombrinha, para a chuva que ninguém previu` },
+    { id:"s-cta", rot:"Convite final da página", onde:"Sobre — última seção",
+      atual:`Vamos nos conhecer
+Um café e uma boa conversa
+Antes de qualquer contrato, eu gosto de ouvir. Me conta o que você imagina e eu digo, com sinceridade, como posso ajudar.` }
+  ]
+},
+
+{
+  grupo: "Galeria",
+  arquivo: "galeria.html",
+  itens: [
+    { id:"g-title", rot:"Título da aba e do Google", onde:"Galeria",
+      atual:`Galeria — Adeline Mendes Cerimonial | Cascavel, CE
+Registros de casamentos e aniversários infantis conduzidos pela Adeline Mendes Cerimonial em Cascavel e região.` },
+    { id:"g-hero", rot:"Abertura da galeria", onde:"Galeria — primeira tela",
+      atual:`Registros
+Momentos que já aconteceram
+Cerimônias, recepções, mesas de bolo e muita gente feliz. Filtre pelo tipo de evento e clique em uma foto para ver em tamanho grande.` },
+    { id:"g-miolo", rot:"Textos internos da galeria", onde:"Galeria — filtros e chamadas",
+      atual:`Por dentro · O que aconteceu em cada um
+Ver todas as fotos
+Filtros: Todos / Casamento / Aniversário infantil
+Mais registros no Instagram` },
+    { id:"g-fotos", rot:"Descrição das fotos (textos alternativos)", onde:"Galeria — 12 fotos",
+      nota:"Hoje o site não tem NENHUMA foto real: são 48 imagens faltando. As descrições atuais foram escritas para fotos imaginadas. Quando você mandar as fotos de verdade, elas precisam de uma descrição curta cada (é o que as pessoas cegas ouvem). Não precisa escrever agora — só confirme que entendeu que as fotos são o item que falta.",
+      atual:"(as descrições serão escritas quando as fotos reais chegarem)" }
+  ]
+},
+
+{
+  grupo: "Página de contato",
+  arquivo: "contato.html",
+  nota: "É a página onde o cliente pede orçamento. O formulário monta uma mensagem e abre o WhatsApp com ela pronta.",
+  itens: [
+    { id:"ct-title", rot:"Título da aba e do Google", onde:"Contato",
+      atual:`Contato e orçamento — Adeline Mendes Cerimonial | Cascavel, CE
+Peça um orçamento de cerimonial e assessoria para casamento ou aniversário infantil em Cascavel e região. Atendimento pelo WhatsApp (85) 99820-0767.` },
+    { id:"ct-hero", rot:"Abertura da página", onde:"Contato — primeira tela",
+      atual:`Orçamento sem compromisso
+Me conta o que você está planejando
+Preencha o que já souber. A mensagem sai pronta no seu WhatsApp e eu respondo pessoalmente.` },
+    { id:"ct-form", rot:"Campos do formulário", onde:"Contato — formulário",
+      nota:"São as informações que você recebe junto com o pedido. Falta alguma pergunta que você sempre precisa fazer?",
+      atual:`Alguns detalhes para começar
+Seu nome * / Tipo de evento * / Data prevista / Local ou cidade / Convidados (aprox.) / O que você imagina
+Botão: Enviar pelo WhatsApp` },
+    { id:"ct-faq-orcamento", rot:"Como é feito o orçamento?", onde:"Contato — pergunta 1", p:1,
+      nota:"Explica como você calcula o preço. Confere?",
+      atual:"O valor depende do tipo de evento, do número de convidados, da duração e do tamanho da equipe necessária no dia. Com essas informações eu envio uma proposta detalhada, com tudo o que está incluso." },
+    { id:"ct-faq-antec", rot:"Com quanta antecedência entrar em contato?", onde:"Contato — pergunta 2", p:1,
+      nota:"Diz de oito a doze meses para casamento e de três a seis para infantil. São os seus prazos?",
+      atual:"Para casamento, o ideal é de oito a doze meses antes, principalmente para datas de alta procura. Para aniversário infantil, de três a seis meses. Mas vale perguntar mesmo em cima da hora: se a data estiver livre, a gente dá um jeito." },
+    { id:"ct-faq-assessoria", rot:"Já contratei quase tudo, ainda faz sentido?", onde:"Contato — pergunta 3", p:1,
+      nota:"Diz que você assume o roteiro algumas semanas antes. Quantas semanas, na prática?",
+      atual:"Faz, e é para isso que existe a assessoria do dia. Eu assumo o roteiro algumas semanas antes, alinho os fornecedores que você já contratou e fico no comando durante o evento." },
+    { id:"ct-faq-fora", rot:"Atende fora de Cascavel?", onde:"Contato — pergunta 4", p:1,
+      nota:"Diz que deslocamento e hospedagem da equipe entram no orçamento para outras cidades do Ceará. É a sua regra?",
+      atual:"Sim. Atendo Cascavel e a região metropolitana de Fortaleza. Para outras cidades do Ceará, o deslocamento e a hospedagem da equipe entram no orçamento." }
+  ]
+},
+
+{
+  grupo: "Checklist, página de erro e botões",
+  arquivo: "checklist.html, 404.html e todas as páginas",
+  itens: [
+    { id:"ck-hero", rot:"Abertura do checklist", onde:"Checklist — primeira tela",
+      atual:`Presente para você
+O checklist do seu evento
+O que decidir em cada etapa, do primeiro ano ao dia da festa. Marque o que já foi feito: o progresso fica salvo neste navegador, e dá para imprimir quando quiser.` },
+    { id:"ck-tarefas", rot:"As tarefas do checklist", onde:"Checklist — listas de casamento e infantil",
+      nota:"São cerca de 70 tarefas divididas por prazo (12 meses antes, 8 a 10 meses, 6 meses, e assim até o dia). O site diz que é “a lista que eu uso”, então ela precisa ser a sua lista. Diga aqui se quer revisar essa lista inteira em separado — ela é longa e merece uma conversa à parte.",
+      atual:"(lista completa em separado — 70 tarefas, por prazo, de casamento e de festa infantil)" },
+    { id:"e404", rot:"Página de endereço errado", onde:"mostrada quando o link não existe",
+      atual:`Página não encontrada
+Esta página saiu antes da festa
+O endereço pode ter mudado ou sido digitado com um detalhe fora do lugar. Acontece até no casamento mais bem planejado.` },
+    { id:"botoes", rot:"Textos dos botões do site", onde:"todas as páginas",
+      atual:`Falar comigo
+Pedir orçamento
+Ver os serviços
+Ver a galeria
+Ver a galeria completa
+Ver o roteiro do dia
+Ver o cronograma
+Checklist de casamento
+Festa infantil
+Voltar ao início` },
+    { id:"menu", rot:"Nomes do menu", onde:"topo de todas as páginas",
+      atual:`Início · Casamento · Infantil · Sobre · Galeria · Contato
+Rodapé: Navegação · Serviços · Contato` }
+  ]
+}
+
+];
+</script>
+
+<script>
+(function(){
+  "use strict";
+
+  var CHAVE = "adeline-revisao-textos-v1";
+  var DECISOES = [
+    { v:"aprovado", rot:"Pode ficar",   cls:"escolha--ok" },
+    { v:"ajustar",  rot:"Quero mudar",  cls:"escolha--aj" },
+    { v:"refazer",  rot:"Está errado",  cls:"escolha--re" }
+  ];
+
+  var lista    = document.getElementById("lista");
+  var progBar  = document.getElementById("prog-bar");
+  var progWrap = document.getElementById("prog-bar-wrap");
+  var progTxt  = document.getElementById("prog-txt");
+  var recadoEl = document.getElementById("recado");
+  var avisoEl  = document.getElementById("aviso-salvar");
+  var rodSalvo = document.getElementById("rod-salvo");
+
+  /* ---------- guarda das respostas ---------- */
+  var temStorage = (function(){
+    try { localStorage.setItem("__t","1"); localStorage.removeItem("__t"); return true; }
+    catch (e) { return false; }
+  })();
+
+  var estado = (function(){
+    if (!temStorage) return {};
+    try { return JSON.parse(localStorage.getItem(CHAVE)) || {}; }
+    catch (e) { return {}; }
+  })();
+
+  /* guarda so o que ela realmente respondeu */
+  function enxuto(){
+    var fora = {};
+    Object.keys(estado).forEach(function(k){
+      var r = estado[k];
+      if (r && (r.decisao || (r.novo && r.novo.trim()))) fora[k] = r;
+    });
+    return fora;
+  }
+
+  var relogioSalvar = null;
+  function salvar(){
+    if (!temStorage) { marcaSalvo("não está sendo salvo neste navegador"); return; }
+    clearTimeout(relogioSalvar);
+    relogioSalvar = setTimeout(function(){
+      try {
+        localStorage.setItem(CHAVE, JSON.stringify(enxuto()));
+        marcaSalvo("salvo às " + new Date().toLocaleTimeString("pt-BR"));
+      } catch (e) {
+        marcaSalvo("não foi possível salvar — use “Salvar backup”");
+      }
+    }, 250);
+  }
+  function marcaSalvo(txt){ rodSalvo.textContent = txt ? "Suas respostas: " + txt + "." : ""; }
+
+  function resposta(id){
+    if (!estado[id]) estado[id] = { decisao:"", novo:"" };
+    return estado[id];
+  }
+
+  /* ---------- montagem da página ---------- */
+  var todosItens = [];
+
+  function montar(){
+    window.TEXTOS.forEach(function(grupo, gi){
+      var sec = document.createElement("section");
+      sec.className = "secao";
+
+      var cab = document.createElement("div");
+      cab.className = "secao__cab";
+      var h2 = document.createElement("h2");
+      h2.textContent = grupo.grupo;
+      h2.id = "g" + gi;
+      cab.appendChild(h2);
+      if (grupo.arquivo){
+        var arq = document.createElement("span");
+        arq.className = "secao__arq";
+        arq.textContent = grupo.arquivo;
+        cab.appendChild(arq);
+      }
+      var conta = document.createElement("span");
+      conta.className = "secao__conta";
+      cab.appendChild(conta);
+      sec.appendChild(cab);
+
+      if (grupo.nota){
+        var nota = document.createElement("p");
+        nota.className = "secao__nota";
+        nota.textContent = grupo.nota;
+        sec.appendChild(nota);
+      }
+
+      grupo.itens.forEach(function(item){
+        item.grupo = grupo.grupo;
+        todosItens.push(item);
+        sec.appendChild(montarItem(item));
+      });
+
+      sec.__conta = conta;
+      sec.__total = grupo.itens.length;
+      lista.appendChild(sec);
+    });
+  }
+
+  function montarItem(item){
+    var r = resposta(item.id);
+
+    var art = document.createElement("article");
+    art.className = "item";
+    art.dataset.id = item.id;
+    art.dataset.p = item.p === 1 ? "1" : "2";
+    if (r.decisao) art.dataset.decisao = r.decisao;
+
+    var cab = document.createElement("div");
+    cab.className = "item__cab";
+    var rot = document.createElement("span");
+    rot.className = "item__rot";
+    rot.textContent = item.rot;
+    cab.appendChild(rot);
+    if (item.onde){
+      var onde = document.createElement("span");
+      onde.className = "item__onde";
+      onde.textContent = item.onde;
+      cab.appendChild(onde);
+    }
+    if (item.p === 1){
+      var selo = document.createElement("span");
+      selo.className = "selo";
+      selo.textContent = "confirmar";
+      cab.appendChild(selo);
+    }
+    art.appendChild(cab);
+
+    var atual = document.createElement("p");
+    atual.className = "item__atual";
+    atual.textContent = item.atual;
+    art.appendChild(atual);
+
+    if (item.nota){
+      var nota = document.createElement("p");
+      nota.className = "item__nota";
+      nota.textContent = item.nota;
+      art.appendChild(nota);
+    }
+
+    var fs = document.createElement("fieldset");
+    fs.className = "escolhas";
+    var lg = document.createElement("legend");
+    lg.textContent = "Este texto";
+    fs.appendChild(lg);
+
+    DECISOES.forEach(function(d){
+      var lab = document.createElement("label");
+      lab.className = "escolha " + d.cls;
+      var inp = document.createElement("input");
+      inp.type = "radio";
+      inp.name = "d-" + item.id;
+      inp.value = d.v;
+      inp.checked = r.decisao === d.v;
+      var sp = document.createElement("span");
+      sp.textContent = d.rot;
+      inp.addEventListener("change", function(){
+        r.decisao = d.v;
+        art.dataset.decisao = d.v;
+        salvar();
+        atualizar();
+      });
+      lab.appendChild(inp);
+      lab.appendChild(sp);
+      fs.appendChild(lab);
+    });
+    art.appendChild(fs);
+
+    var campoRot = document.createElement("label");
+    campoRot.className = "campo__rot";
+    campoRot.setAttribute("for", "t-" + item.id);
+    campoRot.textContent = "Como deve ficar (ou o que está errado)";
+    art.appendChild(campoRot);
+
+    var ta = document.createElement("textarea");
+    ta.id = "t-" + item.id;
+    ta.value = r.novo || "";
+    ta.placeholder = "Escreva do seu jeito, sem se preocupar com a forma.";
+    ta.addEventListener("input", function(){ r.novo = ta.value; salvar(); });
+    art.appendChild(ta);
+
+    return art;
+  }
+
+  /* ---------- progresso e filtros ---------- */
+  var filtro = "tudo";
+  var mapaItens = null;
+
+  function acharItem(id){
+    if (!mapaItens){
+      mapaItens = {};
+      todosItens.forEach(function(it){ mapaItens[it.id] = it; });
+    }
+    return mapaItens[id];
+  }
+
+  function decidido(item){
+    var r = estado[item.id];
+    return !!(r && r.decisao);
+  }
+
+  function visivel(item){
+    if (filtro === "essencial") return item.p === 1;
+    if (filtro === "falta")     return !decidido(item);
+    if (filtro === "feito")     return decidido(item);
+    return true;
+  }
+
+  function atualizar(){
+    var feitos = 0;
+    todosItens.forEach(function(it){ if (decidido(it)) feitos++; });
+    var total = todosItens.length;
+    var pct = total ? Math.round(feitos * 100 / total) : 0;
+
+    progBar.style.width = pct + "%";
+    progWrap.setAttribute("aria-valuenow", String(pct));
+    progTxt.textContent = feitos + " de " + total + " textos revisados";
+
+    var mostrados = 0;
+    Array.prototype.forEach.call(lista.querySelectorAll(".secao"), function(sec){
+      var vis = 0, feitosSec = 0, totalSec = 0;
+      Array.prototype.forEach.call(sec.querySelectorAll(".item"), function(art){
+        var item = acharItem(art.dataset.id);
+        totalSec++;
+        if (decidido(item)) feitosSec++;
+        var ok = visivel(item);
+        art.hidden = !ok;
+        if (ok) vis++;
+      });
+      if (sec.__conta) sec.__conta.textContent = feitosSec + "/" + totalSec;
+      sec.hidden = vis === 0;
+      mostrados += vis;
+    });
+
+    mostraVazio(mostrados);
+  }
+
+  function mostraVazio(mostrados){
+    var vazio = document.getElementById("vazio");
+    if (mostrados === 0){
+      if (!vazio){
+        vazio = document.createElement("p");
+        vazio.id = "vazio";
+        vazio.className = "vazio";
+        lista.appendChild(vazio);
+      }
+      vazio.textContent = filtro === "falta"
+        ? "Tudo revisado. Pode clicar em Copiar tudo e mandar para o Israel."
+        : "Nenhum texto neste filtro.";
+      vazio.hidden = false;
+    } else if (vazio) {
+      vazio.hidden = true;
+    }
+  }
+
+  /* ---------- o relatório que ela manda de volta ---------- */
+  function recuar(txt){
+    return String(txt).split("\n").map(function(l){ return "    " + l; }).join("\n");
+  }
+
+  function relatorio(){
+    var linhas = [];
+    var feitos = todosItens.filter(decidido);
+    var faltam = todosItens.filter(function(it){ return !decidido(it); });
+
+    linhas.push("REVISÃO DOS TEXTOS DO SITE — ADELINE MENDES CERIMONIAL");
+    linhas.push("Enviado em " + new Date().toLocaleString("pt-BR"));
+    linhas.push("Revisados: " + feitos.length + " de " + todosItens.length);
+
+    var grupoAtual = "";
+    feitos.forEach(function(it){
+      var r = estado[it.id];
+      if (it.grupo !== grupoAtual){
+        grupoAtual = it.grupo;
+        linhas.push("");
+        linhas.push("==================================================");
+        linhas.push(grupoAtual.toUpperCase());
+        linhas.push("==================================================");
+      }
+      var d = DECISOES.filter(function(x){ return x.v === r.decisao; })[0];
+      linhas.push("");
+      linhas.push("[" + d.rot.toUpperCase() + "] " + it.rot + (it.onde ? "  (" + it.onde + ")" : ""));
+      linhas.push("Está escrito hoje:");
+      linhas.push(recuar(it.atual));
+      if (r.novo && r.novo.trim()){
+        linhas.push("Adeline escreveu:");
+        linhas.push(recuar(r.novo.trim()));
+      } else if (r.decisao !== "aprovado"){
+        linhas.push("Adeline escreveu: (nada ainda)");
+      }
+    });
+
+    if (faltam.length){
+      linhas.push("");
+      linhas.push("==================================================");
+      linhas.push("AINDA SEM RESPOSTA (" + faltam.length + ")");
+      linhas.push("==================================================");
+      faltam.forEach(function(it){
+        linhas.push("- " + it.rot + (it.p === 1 ? "  [essencial]" : "") + " — " + it.grupo);
+      });
+    }
+
+    return linhas.join("\n");
+  }
+
+  /* ---------- ações dos botões ---------- */
+  function recado(msg){
+    recadoEl.textContent = msg;
+    recadoEl.classList.add("ver");
+    setTimeout(function(){ recadoEl.classList.remove("ver"); }, 2800);
+  }
+
+  function baixarArquivo(nome, conteudo, tipo){
+    var blob = new Blob([conteudo], { type: tipo + ";charset=utf-8" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = nome;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function hoje(){
+    var d = new Date();
+    var m = String(d.getMonth() + 1);
+    var dia = String(d.getDate());
+    return d.getFullYear() + "-" + (m.length < 2 ? "0" + m : m) + "-" + (dia.length < 2 ? "0" + dia : dia);
+  }
+
+  function copiarPlanoB(txt){
+    var ta = document.createElement("textarea");
+    ta.value = txt;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    recado(ok ? "Copiado. Agora cole no WhatsApp." : "Não deu para copiar — use Baixar respostas.");
+  }
+
+  document.getElementById("bt-copiar").addEventListener("click", function(){
+    var txt = relatorio();
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){
+        recado("Copiado. Agora cole no WhatsApp.");
+      }, function(){ copiarPlanoB(txt); });
+    } else {
+      copiarPlanoB(txt);
+    }
+  });
+
+  document.getElementById("bt-baixar").addEventListener("click", function(){
+    baixarArquivo("revisao-textos-adeline-" + hoje() + ".txt", relatorio(), "text/plain");
+    recado("Arquivo baixado. Mande ele para o Israel.");
+  });
+
+  document.getElementById("bt-backup").addEventListener("click", function(){
+    baixarArquivo("backup-revisao-" + hoje() + ".json", JSON.stringify(enxuto(), null, 2), "application/json");
+    recado("Backup salvo. Guarde esse arquivo.");
+  });
+
+  document.getElementById("bt-imprimir").addEventListener("click", function(){ window.print(); });
+
+  document.getElementById("bt-restaurar").addEventListener("click", function(){
+    document.getElementById("arq-backup").click();
+  });
+
+  document.getElementById("arq-backup").addEventListener("change", function(ev){
+    var arq = ev.target.files && ev.target.files[0];
+    if (!arq) return;
+    var leitor = new FileReader();
+    leitor.onload = function(){
+      try {
+        var dados = JSON.parse(String(leitor.result));
+        if (!dados || typeof dados !== "object") throw new Error("formato");
+        Object.keys(dados).forEach(function(id){
+          if (dados[id] && typeof dados[id] === "object") estado[id] = dados[id];
+        });
+        salvar();
+        remontar();
+        recado("Backup carregado.");
+      } catch (e) {
+        recado("Esse arquivo não é um backup válido.");
+      }
+      ev.target.value = "";
+    };
+    leitor.readAsText(arq);
+  });
+
+  document.getElementById("bt-zerar").addEventListener("click", function(){
+    if (!window.confirm("Apagar todas as respostas e começar de novo? Isso não dá para desfazer.")) return;
+    Object.keys(estado).forEach(function(k){ delete estado[k]; });
+    if (temStorage){ try { localStorage.removeItem(CHAVE); } catch (e) {} }
+    remontar();
+    recado("Tudo recomeçado.");
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".filtro"), function(bt){
+    bt.addEventListener("click", function(){
+      filtro = bt.dataset.filtro;
+      Array.prototype.forEach.call(document.querySelectorAll(".filtro"), function(outro){
+        outro.setAttribute("aria-pressed", outro === bt ? "true" : "false");
+      });
+      atualizar();
+    });
+  });
+
+  /* ---------- início ---------- */
+  function remontar(){
+    lista.textContent = "";
+    todosItens = [];
+    mapaItens = null;
+    montar();
+    atualizar();
+  }
+
+  if (!temStorage){
+    avisoEl.innerHTML = "<strong>Atenção:</strong> este navegador não está deixando guardar as " +
+      "respostas sozinho. Não feche a página antes de clicar em <strong>Copiar tudo</strong> " +
+      "ou <strong>Baixar respostas</strong>.";
+  } else {
+    avisoEl.innerHTML = "<strong>Pode ir com calma:</strong> tudo que você escrever fica salvo neste " +
+      "aparelho automaticamente — dá para fechar e continuar depois. Quando terminar, ou quando " +
+      "quiser mandar o que já fez, clique em <strong>Copiar tudo</strong> e cole no WhatsApp do Israel.";
+  }
+
+  montar();
+  atualizar();
+  if (Object.keys(estado).length) marcaSalvo("recuperadas deste aparelho");
+})();
+</script>
+</body>
+</html>

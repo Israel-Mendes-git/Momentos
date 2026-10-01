@@ -24,6 +24,11 @@ colocaria no ar texto inventado sobre clientes reais.
   citar nome de noivos ou de criança, peça autorização por escrito antes.
 - **48 fotos faltando** — só existe `assets/img/compartilhar.jpg`. Sem as fotos o site
   mostra os quadros de espera com o nome do arquivo esperado.
+- **`revisao-textos.html`** — é a página onde a Adeline revisa os textos do site.
+  Material interno: traz as notas de produção (o que é exemplo, o que foi inventado) e não
+  deve ficar público. Está com `noindex`, mas o Pages publica a raiz inteira, então ela
+  continua acessível por link direto. **Apague o arquivo antes do merge na `main`**, ou
+  mantenha-o só nesta branch de trabalho.
 - **`teste-home.html`** — é a segunda home, de rascunho. Está com `noindex`, então não
   aparece no Google, mas fica acessível por link direto. Decida se vira a home, se sai
   ou se fica.
@@ -33,7 +38,7 @@ colocaria no ar texto inventado sobre clientes reais.
 ## Passo 1 — levar o trabalho para a `main`
 
 O Cloudflare publica a partir de uma branch. Hoje o trabalho está em
-`paginas-e-animacoes` e a `main` está três commits atrás.
+`paginas-e-animacoes` e a `main` está 6 commits atrás, parada no commit inicial.
 
 ```bash
 git checkout main
